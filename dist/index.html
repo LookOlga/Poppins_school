@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Poppins | The School of Photography</title>
+</head>
+
+	<style>
+		.preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+		opacity: 1;
+		z-index: 10000;
+		transition: 0.33s ease;
+    }
+	.preloader__spinner svg {
+		width: 100px;
+		height: 100px;
+	}
+
+	body.isLoaded .preloader {
+		opacity: 0;
+		z-index: -1;
+	}
+	</style>
+	<body>
+		<div class="preloader">
+    <div class="preloader__spinner">
+        <svg>
+            <use xlink:href="#spinner"></use>
+        </svg>
+    </div>
+</div>
+		<header class="header">
+    <div class="container header__container">
+        <div class="header__logo">
+            <a href="#">Poppins</a>
+        </div>
+        <div class="header__menu">
+            <div class="header__burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="header__nav">
+                <div class="header__list">
+                    <ul class="header__items">
+                        <li class="header__item">
+                            <a href="#courses" class="header__link">Courses</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#portfolio" class="header__link">Portfolio</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#blogs" class="header__link">Blog</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#open-days" class="header__link">Open Days</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+		<main class="main">
+			<section class="intro">
+				<div class="container intro__container">
+					<div class="intro__wrapper">
+						<h1 class="title intro__title">
+							Photography courses and workshops
+						</h1>
+						<p class="intro__desc">Take stunning photos, become a professional photographer, or start your own
+							photography business.</p>
+						<button class="intro__button button button--yellow btn-show" data-modal="book">Book place on course</button>
+					</div>
+				</div>
+			</section>
+			
+			<section class="courses" id="courses">
+				<div class="container">
+					<h2 class="title courses__title">Courses</h2>
+					<ul class="courses__items">
+						<li class="courses__item">
+							<a class="courses__img-link" href="documentary-photography.html">
+								<div class="courses__img-wrap">
+									<img src="img/temp-img/1x1.png" data-src="img/courses/1.jpg" alt="documentary-photography" class="courses__img">
+								</div>
+							</a>
+								<h3 class="courses__subtitle">
+									<a href="documentary-photography.html">Documentary Photography</a>
+								</h3>
+							</a>
+							<p class="courses__desc">In this online short course, you will learn different aspects of
+								photojournalism You will develop shooting and editing techniques for effective storytelling.</p>
+							<p class="courses__price">Price:<span>365$</span></p>
+							<a class="courses__link" href="documentary-photography.html">View course<span></span></a>
+						</li>
+						<li class="courses__item">
+							<a class="courses__img-link" href="travel-photography.html">
+								<div class="courses__img-wrap">
+									<img src="img/temp-img/1x1.png" data-src="img/courses/2.jpg" alt="travel-photography" class="courses__img">
+								</div>
+							</a>
+							<h3 class="courses__subtitle">
+								<a  href="travel-photography.html">Travel Photography</a>
+							</h3>
+							<p class="courses__desc">On this photography course explore and capture with originality, the
+								infinite photographic possibilities in one of the world's top tourist attractions, London. Get a
+								better understanding of composition, colour films and camera controls for all situations.</p>
+							<p class="courses__price">Price:<span>320$</span></p>
+							<a class="courses__link" href="travel-photography.html">View course<span></span></a>
+						</li>
+						<li class="courses__item">
+							<a class="courses__img-link" href="fashion-photography.html">
+								<div class="courses__img-wrap"> 
+									<img src="img/temp-img/1x1.png" data-src="img/courses/3.jpg" alt="fashion-photography" class="courses__img">
+								</div>
+							</a>
+							<h3 class="courses__subtitle">
+								<a href="fashion-photography.html">Fashion Photography</a>
+							</h3>
+							<p class="courses__desc">Learn the fundamental skills involved in taking original fashion images for
+								a variety of commissioners. Students will focus on practical photography techniques that are
+								needed to be mastered in order to deliver fashion photos to a professional standard.</p>
+							<p class="courses__price">Price:<span>700$</span></p>
+							<a class="courses__link" href="fashion-photography.html">View course<span></span></a>
+						</li>
+						<li class="courses__item">
+							<a class="courses__img-link" href="portrait-photography.html">
+								<div class="courses__img-wrap">
+									<img src="img/temp-img/1x1.png" data-src="img/courses/4.jpg" alt="portrait-photography" class="courses__img">
+								</div>
+							</a>
+							<h3 class="courses__subtitle">
+								<a href="portrait-photography.html">Portrait Photography</a>
+							</h3>
+							<p class="courses__desc">This practical course will help students to develop a personal style and
+								confidence with technique, when taking portraits. They will photograph each other, models or
+								friends with studio flash, portable flash and daylight.</p>
+							<p class="courses__price">Price:<span>550$</span></p>
+							<a class="courses__link" href="portrait-photography.html">View course<span></span></a>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+			<section class="portfolio" id="portfolio">
+				<div class="container">
+					<h2 class="title portfolio__title">Portfolio</h2>
+					<p class="text portfolio__text">Days and nights of students' hard work, their involvement in their favorite
+						subjects of photography, lead them to provide these wonderful and appriciable works. These are some
+						photographic works and students' portfolios during their course of study in the Poppins Photography School.
+						Calling these works as their best works is surely irrelevant as as the best is yet to come. Instead, it is
+						their initial steps to the vast worlf of Media and Mass Comminication. </p>
+					<div class="portfolio__slider slider">
+						<div class="portfolio__slider-wrapper slider-wrapper">
+							<div class="portfolio__slider-track slider-track">
+								<div class="portfolio__slide slide">
+									<div class="portfolio__wrap">
+										<div class="portfolio__images">
+											<div class="portfolio__img portfolio__img--first">
+												<img src="img/portfolio/1.jpg" alt="fashion-photography" class="portfolio__photo">
+											</div>
+											<div class="portfolio__img portfolio__img--second">
+												<img src="img/portfolio/2.jpg" alt="fashion-photography" class="portfolio__photo">
+											</div>
+										</div>
+										<p class="portfolio__desc">Student's work from Fashion Photography Course</p>
+										<p class="portfolio__author">Author:<span>Hust Wilson</span></p>
+									</div>
+								</div>
+								<div class="portfolio__slide slide">
+									<div class="portfolio__wrap">
+										<div class="portfolio__images">
+											<div class="portfolio__img">
+												<img src="img/portfolio/3.jpg" alt="documentary-photography" class="portfolio__photo">
+											</div>
+											<div class="portfolio__img">
+												<img src="img/portfolio/4.jpg" alt="documentary-photography" class="portfolio__photo">
+											</div>
+										</div>
+										<p class="portfolio__desc">Student's work from Documentary Photography Course</p>
+										<p class="portfolio__author">Author:<span>Dario Mueller</span></p>
+									</div>
+								</div>
+								<div class="portfolio__slide slide">
+									<div class="portfolio__wrap">
+										<div class="portfolio__images">
+											<div class="portfolio__img">
+												<img src="img/portfolio/5.jpg" alt="fashion-photography" class="portfolio__photo">
+											</div>
+											<div class="portfolio__img">
+												<img src="img/portfolio/6.jpg" alt="fashion-photography" class="portfolio__photo">
+											</div>
+										</div>
+										<p class="portfolio__desc">Student's work from Fashion Photography Course</p>
+										<p class="portfolio__author">Author:<span>Khaled Ghareeb</span></p>
+									</div>
+								</div>
+								<div class="portfolio__slide slide">
+									<div class="portfolio__wrap">
+										<div class="portfolio__images">
+											<div class="portfolio__img">
+												<img src="img/portfolio/7.jpg" alt="portrait-photography" class="portfolio__photo">
+											</div>
+											<div class="portfolio__img">
+												<img src="img/portfolio/8.jpg" alt="portrait-photography" class="portfolio__photo">
+											</div>
+										</div>
+										<p class="portfolio__desc">Student's work from Portrait Photography Course</p>
+										<p class="portfolio__author">Author:<span>Francesca Zama</span></p>
+									</div>
+								</div>
+								<div class="portfolio__slide slide">
+									<div class="portfolio__wrap">
+										<div class="portfolio__images">
+											<div class="portfolio__img">
+												<img src="img/portfolio/9.jpg" alt="travel-photography" class="portfolio__photo">
+											</div>
+											<div class="portfolio__img">
+												<img src="img/portfolio/10.jpg" alt="travel-photography" class="portfolio__photo">
+											</div>
+										</div>
+										<p class="portfolio__desc">Student's work from Travel Photography Course</p>
+										<p class="portfolio__author">Author:<span>Kamile Leo</span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="portfolio__arrows">
+								<div class="portfolio__arrow portfolio__arrow--left">
+									<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" class="svg-inline--fa fa-chevron-left fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path></svg>
+								</div>
+								<div class="portfolio__arrow portfolio__arrow--right">
+								<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>
+								</div>
+							</div> -->
+					</div>
+				</div>
+			</section>
+			
+			<section class="blogs" id="blogs">
+				<div class="container">
+					<h2 class="title blogs__title">Blog</h2>
+					<ul class="blogs__list">
+						<li class="blogs__item">
+							<div  class="blogs__img">
+								<a href="photography-equipment.html"><img src="img/blogs/1.jpg" alt="camera"></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="photography-equipment.html">Best Beginners Photography Equipment 2021</a>
+							</h3>
+						</li>
+						<li class="blogs__item">
+							<div  class="blogs__img">
+								<a href="landscape-photography-tips.html"><img src="img/blogs/2.jpg" alt="landscape-photograghy"></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="landscape-photography-tips.html">Pro Landscape Photograghy Tips from Tom Archer</a>
+							</h3>
+						</li>
+						<li class="blogs__item">
+							<div  class="blogs__img">
+								<a href="leica-r7-review.html"><img src="img/blogs/3.jpg" alt="leica-R7" ></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="leica-r7-review.html">Leica R7 Review</a>
+							</h3>
+						</li>
+						<li class="blogs__item">
+							<div class="blogs__img">
+								<a href="terry-o-neil.html"><img src="img/blogs/4.jpg" alt="Terry-O-Neil"></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="terry-o-neil.html">Terry O'Neil British Photography Legend</a>
+							</h3>
+						</li>
+						<li class="blogs__item">
+							<div class="blogs__img">
+								<a href="photography-hashtags.html"><img src="img/blogs/5.jfif" alt="social-media"></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="photography-hashtags.html">Photography Hashtags 2021 - Best on Instagram</a>
+							</h3>
+						</li>
+						<li class="blogs__item">
+							<div  class="blogs__img">
+								<a href="canon-rf50-review.html"><img src="img/blogs/6.jpg" alt="Canon-camera"></a>
+							</div>
+							<h3 class="blogs__subtitle">
+								<a href="canon-rf50-review.html">Canon RF 50mm Lens F1.8 STM Review</a>
+							</h3>
+						</li>
+					</ul>
+				</div>
+			</section>
+			
+			<section class="open-days" id="open-days">
+				<div class="container open-days__container">
+					<div class="open-days__wrapper">
+						<h2 class="subtitle subtitle--white courses__title">Open days</h2>
+						<p class="text text--white open-days__text">Want to study with us? Our Online Open Days are great way to gain in depth information on life at Poppins.
+						Interested in studying at Poppins? Join us at an online Open Day this term to see what life at Poppins is like. Find out about our courses, our facilities, gain application advice and speak to current students.
+						Just write to us that you want to attend the Open Days!   
+						</p>
+			
+						<form action="#" autocomplete="off" class="open-days__form">
+						   <div class="open-days__inputs">
+								<input class="open-days__input input" name="name"  placeholder="Name" type="text" required aria-label="Enter your name">
+								<input class="open-days__input input" name="email" placeholder="Email" type="text" required aria-label="Enter your email">          
+						   </div>
+							<textarea class="open-days__textarea textarea" placeholder="Message" required aria-label="Enter your message" rows="1"></textarea>
+							<button class="button button--white open-days__button" type="submit" aria-label="Send message">Send</button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+    <div class="container">
+        <nav class="footer__nav">
+            <div class="footer__social">
+                <p class="footer__slogan">Because the world needs creativity</p>
+                <ul class="footer__icons">
+                    <li class="footer__icon">
+                        <a href="#" class="footer__img">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
+                                class="svg-inline--fa fa-instagram fa-w-14" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="#f2f2f2"
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer__icon">
+                        <a href="#" class="footer__img">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square"
+                                class="svg-inline--fa fa-facebook-square fa-w-14" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="#f2f2f2"
+                                    d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer__icon">
+                        <a href="#" class="footer__img">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin"
+                                class="svg-inline--fa fa-linkedin fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512">
+                                <path fill="#f2f2f2"
+                                    d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="footer__icon">
+                        <a href="#" class="footer__img">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
+                                class="svg-inline--fa fa-youtube fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 576 512">
+                                <path fill="#f2f2f2"
+                                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                                </path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="footer__list">
+                <li class="footer__item">
+                    <a href="" class="footer__link">Open day</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Courses</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Portfolio</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Contacts</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Privacy Information</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Data Processing Information</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Cookies</a>
+                </li>
+                <li class="footer__item">
+                    <a href="" class="footer__link">Disclaimer
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <p class="footer__rights">
+            <small>© 2021 Poppins. All Rights Reserved.</small>
+        </p>
+    </div>
+</footer>
+
+
+<div class="overlay">
+    <div class="popup-book popup" id="book">
+        <h2 class="popup__title">Book a course</h2>
+        <p class="popup__text">If you want to join us, just select a course and send your request. We will call you back
+            later for further instructions.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone">
+            <label for="email">E-mail</label>
+            <input type="email" name="email">
+            <label for="message">Message</label>
+            <textarea type="text" name="message" rows="3"></textarea>
+            <button type="button" class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+    <div class="popup-qusetion popup" id="question">
+        <h2 class="popup__title">Ask question</h2>
+        <p class="popup__text">If you have any questions, feel free to ask whatever you want. We will call you back as soon as possible.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone">
+            <label for="email">E-mail</label>
+            <input type="email" name="email">
+            <label for="message">Message</label>
+            <textarea type="text" name="message" rows="3"></textarea>
+            <button type="button" class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+</div>
+
+</body>
+</html>
+		<div hidden>
+    <svg>
+        <symbol id="spinner"
+            style="margin: auto; background: none; display: block; shape-rendering: auto;"
+            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="30" cy="50" fill="#fd9d4a" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="-0.5s"></animate>
+            </circle>
+            <circle cx="70" cy="50" fill="#ffffff" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="0s"></animate>
+            </circle>
+            <circle cx="30" cy="50" fill="#fd9d4a" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="-0.5s"></animate>
+                <animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1"
+                    dur="1s" repeatCount="indefinite"></animate>
+            </circle>
+        </symbol>
+    </svg>
+</div>
+		<script src="js/script.min.js"></script>
+	</body>
+</html>

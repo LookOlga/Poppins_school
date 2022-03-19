@@ -1,0 +1,38 @@
+input[type="text"],
+input[type="text"]:focus,
+input[type="text"]:active {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+input:focus,
+textarea:focus,
+input:active,
+textarea:active {
+    outline: none;
+    border-bottom: 0.2rem solid $yellow;      
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s;
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-text-fill-color: #999;
+}
+
+
+.input,
+.textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    padding: 1rem;
+    font-family: inherit;
+    min-width: 22rem;
+}
+
+
+.textarea {
+    resize: none;
+}

@@ -1,0 +1,57 @@
+.portfolio {
+    &__text {
+        margin-top: 2rem;
+    }
+    &__slider {
+        margin-top: 3rem;
+        position: relative;
+    }
+
+    
+    &__images {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    &__img{
+        width: 50%;
+        padding: 0 0 58% 0;
+        overflow: hidden;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &__desc {
+        font-style: italic;
+        margin-top: 1rem;
+    }
+    &__author {
+        span {
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+    }
+    &__arrow {
+        position: absolute;
+        top: 50%;
+        svg {
+            width: 2.5rem;
+            height: 2.5rem;
+           
+        }
+        &--left {
+            left: 0;
+        }
+        &--right {
+            right: 0;
+        }
+    }
+
+}
