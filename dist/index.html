@@ -9,31 +9,31 @@
 	<title>Poppins | The School of Photography</title>
 </head>
 
-	<style>
-		.preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-		opacity: 1;
-		z-index: 10000;
-		transition: 0.33s ease;
-    }
-	.preloader__spinner svg {
-		width: 100px;
-		height: 100px;
-	}
+		<style>
+    .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 1;
+    z-index: 10000;
+    transition: 0.33s ease;
+}
+.preloader__spinner svg {
+    width: 100px;
+    height: 100px;
+}
 
-	body.isLoaded .preloader {
-		opacity: 0;
-		z-index: -1;
-	}
-	</style>
+body.isLoaded .preloader {
+    opacity: 0;
+    z-index: -1;
+}
+</style>
 	<body>
 		<div class="preloader">
     <div class="preloader__spinner">
