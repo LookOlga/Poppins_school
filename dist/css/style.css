@@ -514,6 +514,10 @@ body.menu-active .header__nav::after {
           transition-delay: 0.1s;
 }
 
+.courses__container {
+  overflow: hidden;
+}
+
 .courses__items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -523,11 +527,11 @@ body.menu-active .header__nav::after {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin: 0 -4rem -4rem;
 }
 
 .courses__img-link {
   display: block;
-  height: 342px;
 }
 
 .courses__img-wrap {
@@ -543,9 +547,9 @@ body.menu-active .header__nav::after {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 45%;
+  width: calc(50% - 8rem);
+  margin: 0 4rem 4rem;
   min-width: 28rem;
-  min-height: 40rem;
   margin-top: 4rem;
 }
 
