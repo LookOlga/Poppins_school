@@ -42,6 +42,8 @@ let { src, dest } = require('gulp'),
 	webphtml = require('gulp-webp-html'),
 	webp = require('imagemin-webp'),
 	webpcss = require("gulp-webpcss"),
+	ghPages = require('gh-pages'),
+	pathVar = require('path'),
 	newer = require('gulp-newer');
 
 function browserSync(params) {
@@ -145,9 +147,16 @@ function watchFiles(params) {
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.img], images);
 }
+
 function clean(params) {
 	return del(path.clean);
 }
+
+function deploy(cb) {
+	ghPages.publish(pathVar.join(process.cwd(), './dist'), cb);
+}
+
+  
 let fontsBuild = gulp.series(fonts);
 let buildDev = gulp.series(clean, gulp.parallel(fontsBuild, html, css, js, images));
 let watch = gulp.series(buildDev, gulp.parallel(watchFiles, browserSync));
@@ -155,3 +164,4 @@ let watch = gulp.series(buildDev, gulp.parallel(watchFiles, browserSync));
 exports.fonts = fontsBuild;
 exports.watch = watch;
 exports.default = watch;
+exports.deploy = deploy;
