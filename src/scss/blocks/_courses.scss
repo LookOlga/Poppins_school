@@ -15,8 +15,11 @@
     }
 
     &__img-wrap {
-        height: 100%;
-        background: url('../../img/spinner/spinner.gif') center center no-repeat;
+        // height: 100%;
+        // background: url('../../img/spinner/spinner.gif') center center no-repeat;
+        img {
+            width: 100%;
+        }
     }
 
     &__item {

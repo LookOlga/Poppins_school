@@ -35,21 +35,13 @@
             border-bottom: 1px solid #ccc;
             img {
                 display: block;
-                width: 342px;
                 margin: 0 auto;
             }
         }
     }
 
-    &__review {
-        width: 68%;
-        flex-grow: 1;
-    }
-
     &__photo {
-        width: 30%;
         min-width: 20rem;
-        flex-grow: 1;
         margin: 0 auto;
         &--100 {
             width: 100%;
@@ -81,7 +73,7 @@
     }
 
     &__text {
-        margin: 2rem 0 4rem 0;
+        margin-top: 2rem;
     }
 
     &__label {
@@ -135,20 +127,27 @@
     }
 }
 
-
-@media(min-width: 665px) {
+@media(min-width: 768px) {
     .blog-post {
-        &__text {
-            margin-right: 3rem;
+        &__review {
+            width: calc(70% - 4rem);
+            margin-right: 4rem;
+        }
+        &__photo {
+            width: 30%;
         }
     }
 }
+
 @media(max-width: 768px) {
     .blog-post {
         &__article {
             &--img {
                 justify-content: center;
             }
+        }
+        &__text {
+            margin-bottom: 4rem;
         }
     }
 }

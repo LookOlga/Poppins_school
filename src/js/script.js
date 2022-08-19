@@ -19,22 +19,32 @@ window.addEventListener('DOMContentLoaded', () => {
             this.menuItemsParent = document.querySelector(this.menuItemsParent);
 
             this.selector.addEventListener('click', () => {
-                // if(document.body.classList.contains('menu-active')) {
-                //     document.body.style.paddingRight = `0px`;
-                // } else {
-                //     document.body.style.paddingRight = `${this.getScrollBarWidth()}px`;
-                // }
+                if(document.body.classList.contains('menu-active')) {
+                    this.closeMenu();
+                } else {
+                    this.openMenu();
+                    
+                }
 
-                document.body.classList.toggle('menu-active');
             })
 
             this.menuItemsParent.addEventListener('click', (e) => {
                 let target = e.target;
 
                 if (target.tagName === 'A') {
-                    document.body.classList.toggle('menu-active');
+                    this.closeMenu();
                 }
             })
+        }
+
+        openMenu() {
+            document.body.classList.add('menu-active');
+            document.body.style.paddingRight = `${this.getScrollBarWidth()}px`;
+        }
+
+        closeMenu() {
+            document.body.classList.remove('menu-active');
+            document.body.style.paddingRight = `0px`;
         }
 
         getScrollBarWidth() {
@@ -202,11 +212,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
             this.overlay.classList.add('showOverlay');
             this.currentPopup.classList.add('showPopup');
+            document.body.style.overflow = 'hidden';
         }
 
         closePopup() {
             this.overlay.classList.remove('showOverlay');
             this.currentPopup.classList.remove('showPopup');
+            document.body.style.overflow = '';
         }
     }
 

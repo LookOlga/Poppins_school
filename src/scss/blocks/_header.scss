@@ -68,7 +68,7 @@
         transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
         background: rgba(20, 21, 26, 0.6);
         border-bottom-left-radius: 200%;
-        transition-delay: .2s;
+        // transition-delay: .2s;
 
         &::after {
             content: "";
@@ -149,11 +149,11 @@ body.menu-active {
         &__nav::after {
             transform: translateX(0%) translateY(0%);
             border-radius: 0;
-            transition-delay: 0s;
+            // transition-delay: 0s;
         }
 
         &__nav::after {
-            transition-delay: .1s;
+            // transition-delay: .1s;
         }
     }
 
