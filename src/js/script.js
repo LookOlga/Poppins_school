@@ -172,18 +172,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     class Popup {
-        constructor(popup, btnShow, overlay) {
-            this.popup = popup;
-            this.btnShow = btnShow;
-            this.overlay = overlay;
+        constructor(popupSelector, btnShowSelector, overlaySelector, popupFormSelector) {
+            this.popupSelector = popupSelector;
+            this.btnShowSelector = btnShowSelector;
+            this.overlaySelector = overlaySelector;
+            this.popupFormSelector = popupFormSelector;
             this.currentPopup = null;
             this.btnClose = null;
         }
 
         init() {
-            this.popup = document.querySelector(this.popup);
-            this.btnShowPopup = document.querySelector(this.btnShow);
-            this.overlay = document.querySelector(this.overlay);
+            this.popup = document.querySelector(this.popupSelector);
+            this.btnShowPopup = document.querySelector(this.btnShowSelector);
+            this.popupForm = document.querySelector(this.popupFormSelector);
+            this.overlay = document.querySelector(this.overlaySelector);
 
             this.btnShowPopup.addEventListener('click', (e) => {
                 this.showPopup(e);
@@ -218,11 +220,12 @@ window.addEventListener('DOMContentLoaded', () => {
         closePopup() {
             this.overlay.classList.remove('showOverlay');
             this.currentPopup.classList.remove('showPopup');
+            this.popupForm.reset();
             document.body.style.overflow = '';
         }
     }
 
-    const popup = new Popup('.popup', '.btn-show', '.overlay').init();
+    const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form').init();
 
 
 
