@@ -280,4 +280,36 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     lazyLoading();
+
+
+    const customSelect = (selectBtnSelector, optionSelector, selectLabelSelector, selectDropdownSelector) => {
+        const selectBtn = document.querySelector(selectBtnSelector),
+            options = document.querySelectorAll(optionSelector),
+            selectLabel = document.querySelector(selectLabelSelector),
+            selectDropdown = document.querySelector(selectDropdownSelector);
+    
+    
+            selectBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleHidden();
+            })
+            
+            options.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    setSelectTiltle(e);
+                    toggleHidden();
+                })
+            })
+            
+            function toggleHidden() {
+                selectDropdown.classList.toggle('hidden');
+            }
+            
+            function setSelectTiltle (e) {
+                const labelElement = document.querySelector(`label[for="${e.target.id}"]`).innerText;
+                selectLabel.innerHTML = labelElement;
+            }
+    }
+    
+    customSelect('.select-group__button', '.option', '#select-label', '.dropdown');
 })

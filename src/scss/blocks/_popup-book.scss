@@ -3,4 +3,11 @@
         width: 100%;
         margin-top: 1rem;
     }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #333;
+}
 }

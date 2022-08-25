@@ -4,6 +4,7 @@
 @import 'base/text';
 @import 'base/buttons';
 @import 'base/form';
+@import 'base/select';
 @import 'base/slider';
 @import 'base/animation';
 
@@ -58,6 +59,7 @@ img {
 }
 
 button {
+    font-family: 'Poppins', sans-serif;
     border: 0;
     outline: 0;
     background: transparent;
