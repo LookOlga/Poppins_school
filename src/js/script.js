@@ -19,11 +19,11 @@ window.addEventListener('DOMContentLoaded', () => {
             this.menuItemsParent = document.querySelector(this.menuItemsParent);
 
             this.selector.addEventListener('click', () => {
-                if(document.body.classList.contains('menu-active')) {
+                if (document.body.classList.contains('menu-active')) {
                     this.closeMenu();
                 } else {
                     this.openMenu();
-                    
+
                 }
 
             })
@@ -172,11 +172,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     class Popup {
-        constructor(popupSelector, btnShowSelector, overlaySelector, popupFormSelector) {
+        constructor(popupSelector, btnShowSelector, overlaySelector, popupFormSelector, errorMessageSelector) {
             this.popupSelector = popupSelector;
             this.btnShowSelector = btnShowSelector;
             this.overlaySelector = overlaySelector;
             this.popupFormSelector = popupFormSelector;
+            this.errorMessageSelector = errorMessageSelector;
             this.currentPopup = null;
             this.btnClose = null;
         }
@@ -186,6 +187,8 @@ window.addEventListener('DOMContentLoaded', () => {
             this.btnShowPopup = document.querySelector(this.btnShowSelector);
             this.popupForm = document.querySelector(this.popupFormSelector);
             this.overlay = document.querySelector(this.overlaySelector);
+            this.errorMessages = document.querySelectorAll(this.errorMessageSelector);
+
 
             this.btnShowPopup.addEventListener('click', (e) => {
                 this.showPopup(e);
@@ -196,7 +199,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     })
                 }
             })
-           
+
             this.overlay.addEventListener('click', (e) => {
                 const target = e.target;
 
@@ -221,11 +224,118 @@ window.addEventListener('DOMContentLoaded', () => {
             this.overlay.classList.remove('showOverlay');
             this.currentPopup.classList.remove('showPopup');
             this.popupForm.reset();
+            this.errorMessages.forEach(message => {
+                message.textContent = '';
+            })
             document.body.style.overflow = '';
         }
     }
 
-    const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form').init();
+    const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form', '.popup form .error-message').init();
+
+    class Form {
+        constructor(obj) {
+            this.formSelector = obj.form;
+            this.errorClass = obj.errorClass;
+        }
+
+        init() {
+            this.forms = document.querySelectorAll(this.formSelector);
+
+            this.forms.forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const validation = this.validateForm();
+                    if (validation) {
+                        console.log('valid')
+                    }
+                })
+            })
+        }
+
+        validateForm() {
+            console.log('validation');
+            const regexpEmail = /^[0-9a-z_.-]+@[0-9a-z_^.]+.[a-z]{2,3}$/i;
+
+            this.forms.forEach(form => {
+                const requiredFields = form.querySelectorAll('.required');
+                const messageSpan = form.querySelectorAll('.error-message');
+
+
+                const inputName = form.querySelector('input[name=name]'),
+                    inputPhone = form.querySelector('input[type=tel]'),
+                    selectGroup = form.querySelector('.select-group'),
+                    selectRadio = form.querySelectorAll('.option'),
+                    selectItems = form.querySelectorAll('.select-item');
+
+                if (inputPhone) {
+                    inputPhone.addEventListener('input', () => {
+                        inputPhone.value = inputPhone.value.replace(/\D/, '');
+                    })
+                }
+
+
+                inputName.addEventListener('input', () => {
+                    inputName.value = inputName.value.replace(/\d/, '');
+                })
+
+
+                let error = false,
+                    removeError = true;
+                const fieldsLength = requiredFields.length;
+                const message = {
+                    fill: 'Заполните поле',
+                    format: 'Введите корректный адрес',
+                    checkOption: 'Выберите вариант курса'
+                }
+
+                if(selectItems && selectGroup) {
+                    const checkRadio = el => el.getAttribute('checked');
+                    const notChecked = Array.from(selectRadio).some(checkRadio);
+                        if(!notChecked) {
+                            error = true;
+                            removeError = false;
+                          
+                            const selectMessage = selectGroup.querySelector('.error-message');
+                            selectMessage.textContent = message.checkOption;
+                        }
+                }
+
+                for (let i = 0; i < fieldsLength; i++) {
+                    const field = requiredFields[i],
+                        messageField = messageSpan[i];
+                    if (field.getAttribute('type') === 'email' && !regexpEmail.test(field.value)) {
+                        field.classList.add(this.errorClass);
+                        messageField.textContent = message.format;
+                        error = true;
+                        removeError = false;
+                    }
+
+                    if (field.value === '') {
+                        field.classList.add(this.errorClass);
+                        messageField.textContent = message.fill;
+                        error = true;
+                        removeError = false;
+                    }
+
+                    if (removeError) {
+                        field.classList.remove(this.errorClass);
+                        messageField.textContent = '';
+                    }
+                }
+
+                return !error;
+            })
+
+        }
+
+    }
+
+
+    new Form({
+        form: 'form',
+        errorClass: 'error',
+    }).init();
 
 
 
@@ -243,13 +353,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const lazyLoading = () => {
         const lazyImages = document.querySelectorAll('[data-src]'),
-                windowHeight = document.documentElement.clientHeight;
+            windowHeight = document.documentElement.clientHeight;
 
         let lazyImagesPosition = [];
 
-        if(lazyImages.length > 0) {
+        if (lazyImages.length > 0) {
             lazyImages.forEach(img => {
-                if(img.dataset.src || dataset.srcset) {
+                if (img.dataset.src || dataset.srcset) {
                     const position = img.getBoundingClientRect().top + pageYOffset;
                     lazyImagesPosition.push(position);
                     checkScrollPosition();
@@ -260,23 +370,23 @@ window.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', lazyScroll);
 
         function lazyScroll() {
-            if(document.querySelectorAll('img[data-src],source[data-srcset]').length > 0) {
+            if (document.querySelectorAll('img[data-src],source[data-srcset]').length > 0) {
                 checkScrollPosition();
             }
         }
 
-        function checkScrollPosition () {
-           let imgPosIndex =  lazyImagesPosition.findIndex(item => pageYOffset > item - windowHeight);
-           if(imgPosIndex >= 0) {
-               if(lazyImages[imgPosIndex].dataset.src) {
-                lazyImages[imgPosIndex].src = lazyImages[imgPosIndex].dataset.src;
-                lazyImages[imgPosIndex].removeAttribute('data-src');
-               } else if (lazyImages[imgPosIndex].dataset.srcset) {
-                lazyImages[imgPosIndex].srcset = lazyImages[imgPosIndex].dataset.srcset;
-                lazyImages[imgPosIndex].removeAttribute('data-srcset');
-               }
-               delete lazyImagesPosition[imgPosIndex];
-           }
+        function checkScrollPosition() {
+            let imgPosIndex = lazyImagesPosition.findIndex(item => pageYOffset > item - windowHeight);
+            if (imgPosIndex >= 0) {
+                if (lazyImages[imgPosIndex].dataset.src) {
+                    lazyImages[imgPosIndex].src = lazyImages[imgPosIndex].dataset.src;
+                    lazyImages[imgPosIndex].removeAttribute('data-src');
+                } else if (lazyImages[imgPosIndex].dataset.srcset) {
+                    lazyImages[imgPosIndex].srcset = lazyImages[imgPosIndex].dataset.srcset;
+                    lazyImages[imgPosIndex].removeAttribute('data-srcset');
+                }
+                delete lazyImagesPosition[imgPosIndex];
+            }
         }
 
         console.log(lazyImages);
@@ -290,29 +400,34 @@ window.addEventListener('DOMContentLoaded', () => {
             options = document.querySelectorAll(optionSelector),
             selectLabel = document.querySelector(selectLabelSelector),
             selectDropdown = document.querySelector(selectDropdownSelector);
-    
-    
-            selectBtn.addEventListener('click', (e) => {
-                e.preventDefault();
+
+
+        selectBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleHidden();
+        })
+
+        options.forEach(item => {
+            item.addEventListener('click', (e) => {
+                setSelectTiltle(e);
                 toggleHidden();
             })
-            
-            options.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    setSelectTiltle(e);
-                    toggleHidden();
-                })
-            })
-            
-            function toggleHidden() {
-                selectDropdown.classList.toggle('hidden');
-            }
-            
-            function setSelectTiltle (e) {
-                const labelElement = document.querySelector(`label[for="${e.target.id}"]`).innerText;
-                selectLabel.innerHTML = labelElement;
-            }
+        })
+
+        function toggleHidden() {
+            selectDropdown.classList.toggle('hidden');
+        }
+
+        function setSelectTiltle(e) {
+            const labelElement = document.querySelector(`label[for="${e.target.id}"]`),
+                 radioButton = labelElement.nextElementSibling;
+
+            const labelText = labelElement.innerText;
+            radioButton.setAttribute('checked', 'checked');
+
+            selectLabel.innerText = labelText;
+        }
     }
-    
+
     customSelect('.select-group__button', '.option', '#select-label', '.dropdown');
 })

@@ -180,6 +180,10 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #999;
 }
 
+fieldset {
+  border: none;
+}
+
 .input,
 .textarea {
   background: transparent;
@@ -194,11 +198,22 @@ input:-webkit-autofill:active {
   resize: none;
 }
 
+input.error {
+  border-color: red;
+}
+
+.error-message {
+  display: block;
+  font-size: 12px;
+  height: 2rem;
+  color: red;
+}
+
 .option {
   display: none;
 }
 
-.select-group {
+.select-group__container {
   position: relative;
 }
 
@@ -217,7 +232,6 @@ input:-webkit-autofill:active {
   background-color: #f1f1f1;
   border: 1px solid #333;
   background: 0 0;
-  margin-bottom: 2rem;
   padding: 1rem;
   color: #555;
   cursor: pointer;
@@ -229,7 +243,7 @@ input:-webkit-autofill:active {
 
 .dropdown {
   position: absolute;
-  top: 99%;
+  top: 98%;
   width: 100%;
   border: 1px solid #333;
   border-top: none;
@@ -1142,7 +1156,6 @@ body.menu-active .header__nav::after {
   width: 100%;
   border: 1px solid #333;
   background: none;
-  margin-bottom: 2rem;
   padding: 1rem;
   color: #555;
 }
