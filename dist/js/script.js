@@ -284,9 +284,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     removeError = true;
                 const fieldsLength = requiredFields.length;
                 const message = {
-                    fill: 'Заполните поле',
-                    format: 'Введите корректный адрес',
-                    checkOption: 'Выберите вариант курса'
+                    fill: 'Fill in the field',
+                    format: 'Enter a correct email',
+                    checkOption: 'Choose a course option'
                 }
 
                 if(selectItems && selectGroup) {

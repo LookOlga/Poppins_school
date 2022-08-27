@@ -269,10 +269,19 @@
 			
 						<form action="#" autocomplete="off" class="open-days__form">
 						   <div class="open-days__inputs">
-								<input class="open-days__input input" name="name"  placeholder="Name" type="text" required aria-label="Enter your name">
-								<input class="open-days__input input" name="email" placeholder="Email" type="text" required aria-label="Enter your email">          
+								<fieldset class="open-days__input-group">
+									<input class="open-days__input input required" name="name"  placeholder="Name" type="text" aria-label="Enter your name">
+									<span class="error-message"></span>
+								</fieldset>
+								<fieldset class="open-days__input-group">
+									<input class="open-days__input input required" name="email" placeholder="Email" type="text" aria-label="Enter your email">
+									<span class="error-message"></span>
+								</fieldset>         
 						   </div>
-							<textarea class="open-days__textarea textarea" placeholder="Message" required aria-label="Enter your message" rows="1"></textarea>
+							<fieldset class="open-days__textarea-group">
+								<textarea class="open-days__textarea textarea required" placeholder="Message" aria-label="Enter your message" rows="1"></textarea>
+								<span class="error-message"></span>
+							</fieldset>
 							<button class="button button--white open-days__button" type="submit" aria-label="Send message">Send</button>
 						</form>
 					</div>

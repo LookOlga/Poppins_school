@@ -198,7 +198,7 @@ fieldset {
   resize: none;
 }
 
-input.error {
+.error {
   border-color: red;
 }
 
@@ -1104,14 +1104,18 @@ body.menu-active .header__nav::after {
   height: 45px;
 }
 
-.open-days__input {
+.open-days__input-group {
   width: calc(50% - 2rem);
   margin-bottom: 3rem;
   color: inherit;
 }
 
-.open-days__input:last-child {
+.open-days__input-group:last-child {
   margin-right: 0;
+}
+
+.open-days__input-group input {
+  width: 100%;
 }
 
 .open-days__textarea {
@@ -1414,7 +1418,7 @@ section:not(.intro) {
 }
 
 @media (min-width: 992px) {
-  .open-days__input {
+  .open-days__input-group {
     margin-right: 2rem;
   }
 }

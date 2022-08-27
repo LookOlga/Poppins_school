@@ -18,12 +18,16 @@
         height: 45px;
     }
 
-    &__input {
+    &__input-group {
         width: calc(100% / 2 - 2rem);
         margin-bottom: 3rem;
         color: inherit;
         &:last-child{
             margin-right: 0;
+        }
+
+        input {
+            width: 100%;
         }
 
         @media (min-width: 992px) {
