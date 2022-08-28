@@ -10,12 +10,11 @@
     &__form {
         margin-top: 5rem;
         width: 70%;
-        color: #fff;
-    
     }
 
     &__input, &__textarea {
         height: 45px;
+        color: #fff;
     }
 
     &__input-group {
@@ -37,7 +36,6 @@
 
     &__textarea {
         width: 100%;
-        color: inherit;
     }
 
     &__inputs {
