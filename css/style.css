@@ -1109,12 +1109,12 @@ body.menu-active .header__nav::after {
 .open-days__form {
   margin-top: 5rem;
   width: 70%;
-  color: #fff;
 }
 
 .open-days__input,
 .open-days__textarea {
   height: 45px;
+  color: #fff;
 }
 
 .open-days__input-group {
@@ -1133,7 +1133,6 @@ body.menu-active .header__nav::after {
 
 .open-days__textarea {
   width: 100%;
-  color: inherit;
 }
 
 .open-days__inputs {
