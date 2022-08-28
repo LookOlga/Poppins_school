@@ -2,17 +2,13 @@
     &__slider {
         margin-top: 3rem;
         position: relative;
+        padding: 0 3rem;
     }
 
 
-    &__images {
+    &__img-wrap {
         display: flex;
-        justify-content: space-between;
-
-    }
-
-    &__img {
-        width: 50%;
+        flex-direction: column;
         padding: 0 0 58% 0;
         overflow: hidden;
         position: relative;
