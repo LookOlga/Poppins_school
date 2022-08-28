@@ -200,13 +200,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         }
         calc() {
-            this.track.style.width = 100 * this.slides.length + '%';
-
-            // this.width = window.getComputedStyle(this.wrapper).width;
-
-            // this.slides.forEach(slide => {
-            //     slide.style.width = this.width;
-            // })
 
             this.track.style.width = 100 * this.slides.length + '%';
 
@@ -389,7 +382,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.forms.forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const validation = this.validateForm();
+                    const validation = this.validateForm(e);
                     if (validation) {
                         console.log('valid')
                     }
@@ -397,80 +390,80 @@ window.addEventListener('DOMContentLoaded', () => {
             })
         }
 
-        validateForm() {
-            console.log('validation');
+        validateForm(e) {
+            const form = e.target;
             const regexpEmail = /^[0-9a-z_.-]+@[0-9a-z_^.]+.[a-z]{2,3}$/i;
 
-            this.forms.forEach(form => {
-                const requiredFields = form.querySelectorAll('.required');
-                const messageSpan = form.querySelectorAll('.error-message');
+            let error = false,
+                removeError = true;
+
+            const requiredFields = form.querySelectorAll('.required');
+            const messageSpan = form.querySelectorAll('.error-message');
 
 
-                const inputName = form.querySelector('input[name=name]'),
-                    inputPhone = form.querySelector('input[type=tel]'),
-                    selectGroup = form.querySelector('.select-group'),
-                    selectRadio = form.querySelectorAll('.option'),
-                    selectItems = form.querySelectorAll('.select-item');
+            const inputName = form.querySelector('input[name=name]'),
+                inputPhone = form.querySelector('input[type=tel]'),
+                selectGroup = form.querySelector('.select-group'),
+                selectRadio = form.querySelectorAll('.option'),
+                selectItems = form.querySelectorAll('.select-item');
 
-                if (inputPhone) {
-                    inputPhone.addEventListener('input', () => {
-                        inputPhone.value = inputPhone.value.replace(/\D/, '');
-                    })
-                }
-
-
-                inputName.addEventListener('input', () => {
-                    inputName.value = inputName.value.replace(/\d/, '');
+            if (inputPhone) {
+                inputPhone.addEventListener('input', () => {
+                    inputPhone.value = inputPhone.value.replace(/\D/, '');
                 })
+            }
 
 
-                let error = false,
-                    removeError = true;
-                const fieldsLength = requiredFields.length;
-                const message = {
-                    fill: 'Fill in the field',
-                    format: 'Enter a correct email',
-                    checkOption: 'Choose a course option'
-                }
-
-                if (selectItems && selectGroup) {
-                    const checkRadio = el => el.getAttribute('checked');
-                    const notChecked = Array.from(selectRadio).some(checkRadio);
-                    if (!notChecked) {
-                        error = true;
-                        removeError = false;
-
-                        const selectMessage = selectGroup.querySelector('.error-message');
-                        selectMessage.textContent = message.checkOption;
-                    }
-                }
-
-                for (let i = 0; i < fieldsLength; i++) {
-                    const field = requiredFields[i],
-                        messageField = messageSpan[i];
-                    if (field.getAttribute('type') === 'email' && !regexpEmail.test(field.value)) {
-                        field.classList.add(this.errorClass);
-                        messageField.textContent = message.format;
-                        error = true;
-                        removeError = false;
-                    }
-
-                    if (field.value === '') {
-                        field.classList.add(this.errorClass);
-                        messageField.textContent = message.fill;
-                        error = true;
-                        removeError = false;
-                    }
-
-                    if (removeError) {
-                        field.classList.remove(this.errorClass);
-                        messageField.textContent = '';
-                    }
-                }
-
-                return !error;
+            inputName.addEventListener('input', () => {
+                inputName.value = inputName.value.replace(/\d/, '');
             })
 
+
+
+            const fieldsLength = requiredFields.length;
+            const message = {
+                fill: 'Fill in the field',
+                format: 'Enter a correct email',
+                checkOption: 'Choose a course option'
+            }
+
+            if (selectItems && selectGroup) {
+                const checkRadio = el => el.getAttribute('checked'),
+                    selectMessage = selectGroup.querySelector('.error-message');
+                const notChecked = Array.from(selectRadio).some(checkRadio);
+                if (!notChecked) {
+                    error = true;
+                    removeError = false;
+
+                    selectMessage.textContent = message.checkOption;
+                } else {
+                    selectMessage.textContent = '';
+                }
+            }
+
+            for (let i = 0; i < fieldsLength; i++) {
+                const field = requiredFields[i],
+                    messageField = messageSpan[i];
+                if (field.getAttribute('type') === 'email' && !regexpEmail.test(field.value)) {
+                    field.classList.add(this.errorClass);
+                    messageField.textContent = message.format;
+                    error = true;
+                    removeError = false;
+                }
+
+                if (field.value === '') {
+                    field.classList.add(this.errorClass);
+                    messageField.textContent = message.fill;
+                    error = true;
+                    removeError = false;
+                }
+
+                if (removeError) {
+                    field.classList.remove(this.errorClass);
+                    messageField.textContent = '';
+                }
+            }
+            return !error;
         }
 
     }
@@ -533,7 +526,6 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        console.log(lazyImages);
     }
 
     lazyLoading();
