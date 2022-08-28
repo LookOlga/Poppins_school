@@ -285,7 +285,11 @@ fieldset {
   display: flex;
 }
 
-.slider-dots {
+.slide {
+  width: 100%;
+}
+
+.dots {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -293,6 +297,11 @@ fieldset {
       -ms-flex-pack: center;
           justify-content: center;
   margin-top: 3rem;
+}
+
+.btn-prev,
+.btn-next {
+  cursor: pointer;
 }
 
 .dot {
@@ -306,6 +315,12 @@ fieldset {
 
 .dot-active {
   background-color: #0d0d11;
+}
+
+.animated {
+  -webkit-transition: 0.6s all;
+  -o-transition: 0.6s all;
+  transition: 0.6s all;
 }
 
 @-webkit-keyframes arrow {
@@ -883,22 +898,23 @@ body.menu-active .header__nav::after {
   margin-left: 0.5rem;
 }
 
-.portfolio__arrow {
+.portfolio__arrows {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
   position: absolute;
-  top: 50%;
+  left: 0;
+  top: 40%;
 }
 
 .portfolio__arrow svg {
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.portfolio__arrow--left {
-  left: 0;
-}
-
-.portfolio__arrow--right {
-  right: 0;
+  width: 2rem;
+  min-width: 2rem;
+  height: 3.5rem;
 }
 
 .blog__container {

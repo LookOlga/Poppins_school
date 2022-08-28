@@ -35,23 +35,23 @@
         }
     }
 
-    &__arrow {
+    &__arrows {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
         position: absolute;
-        top: 50%;
+        left: 0;
+        top: 40%;
+    }
 
+    &__arrow {
         svg {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2rem;
+            min-width: 2rem;
+            height: 3.5rem;
 
         }
-
-        &--left {
-            left: 0;
-        }
-
-        &--right {
-            right: 0;
-        }
+      
     }
 
 }

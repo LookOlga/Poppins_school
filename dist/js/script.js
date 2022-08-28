@@ -75,84 +75,226 @@ window.addEventListener('DOMContentLoaded', () => {
 
     class Slider {
         constructor(obj) {
-            this.slider = obj.slider;
-            this.slides = obj.slides;
-            this.wrapper = obj.wrapper;
-            this.track = obj.track;
+            this.sliderSelector = obj.sliderSelector;
+            this.slidesSelector = obj.slidesSelector;
+            this.wrapperSelector = obj.wrapperSelector;
+            this.trackSelector = obj.trackSelector;
+            this.btnNextSelector = obj.btnNextSelector;
+            this.btnPrevSelector = obj.btnPrevSelector;
             this.pagination = obj.pagination;
             this.index = 0;
+            this.currentSlide = 0;
+            this.currentDot = 0;
+            this.indicators = [];
+            this.firstInit = true;
+            this.movePosition = 0;
             this.position = 0;
             this.width = null;
+            this.treshold = 140;
+            this.allowedTime = 200;
+            this._startX = 0;
+            this._startY = 0;
+            this._startTime = 0;
         }
 
         init() {
-            this.slides = document.querySelectorAll(this.slides);
-            this.slider = document.querySelector(this.slider);
-            this.wrapper = document.querySelector(this.wrapper);
+            this.slider = document.querySelector(this.sliderSelector);
 
-            this.track = document.querySelector(this.track);
+            if (!this.slider) {
+                return;
+            }
+
+            this.slides = document.querySelectorAll(this.slidesSelector);
+            this.slidesLength = this.slides.length;
+            this.track = document.querySelector(this.trackSelector);
+            this.wrapper = document.querySelector(this.wrapperSelector);
+            this.btnNext = document.querySelector(this.btnNextSelector);
+            this.btnPrev = document.querySelector(this.btnPrevSelector);
 
             this.calc();
 
-            if (this.pagination) {
-                const dots = document.createElement('ul'),
-                    controls = [];
-                dots.classList.add('slider-dots');
-                this.slider.append(dots);
+            this.btnNext.addEventListener('click', () => {
+                this.next();
+            })
 
-                let slidesLength = this.slides.length;
-                for (let i = 0; i < slidesLength; i++) {
+            this.btnPrev.addEventListener('click', () => {
+                this.prev();
+            })
+
+            window.addEventListener('keydown', (e) => {
+                if (e.keyCode === 39) {
+                    this.next();
+                }
+                if (e.keyCode === 37) {
+                    this.prev();
+                }
+            })
+
+            if (this.pagination) {
+                const dots = document.createElement('ul');
+                dots.classList.add('dots');
+                this.wrapper.appendChild(dots);
+
+                for (let i = 0; i < this.slidesLength; i++) {
                     const dot = document.createElement('li');
-                    dot.setAttribute('data-slide-to', i);
                     dot.classList.add('dot');
+                    dot.setAttribute('data-slide-to', i);
 
                     if (i === 0) {
                         dot.classList.add('dot-active');
                     }
-                    dots.append(dot);
-                    controls.push(dot);
+
+                    dots.appendChild(dot);
+                    this.indicators.push(dot);
                 }
 
                 dots.addEventListener('click', (e) => {
-                    let target = e.target;
-
+                    const target = e.target;
                     if (target.tagName === 'LI') {
                         const slideTo = target.getAttribute('data-slide-to');
-
-                        controls.forEach(dot => dot.classList.remove('dot-active'));
-                        target.classList.add('dot-active');
-                        this.index = slideTo;
-                        this.position = this.deleteNodigits(this.width) * this.index;
-                        this.track.style.transition = 'transform 0.5s';
-                        this.movePosition();
-
+                        this.position = -(slideTo * this.movePosition);
+                        this.setPosition();
+                        this.indicators.forEach(item => {
+                            item.classList.remove('dot-active');
+                        })
+                        this.indicators[slideTo].classList.add('dot-active');
                     }
                 })
             }
 
+            this.slider.addEventListener('touchstart', (e) => {
+                const touchObj = e.changedTouches[0];
+                this._startX = touchObj.pageX;
+                this._startY = touchObj.pageY;
+                this._startTime = new Date().getTime();
+            }, {
+                passive: true
+            });
+
+            this.slider.addEventListener('touchend', (e) => {
+                const touchObj = e.changedTouches[0];
+                const dist = touchObj.pageX - this._startX;
+                const elapsedTime = new Date().getTime() - this._startTime;
+
+                if (Math.abs(touchObj.pageY - this._startY) < 100 &&
+                    elapsedTime <= this.allowedTime &&
+                    Math.abs(dist) >= this.treshold) {
+                    const swiperRightBol = dist > 0;
+
+                    if (swiperRightBol) {
+                        this.prev();
+                    } else {
+                        this.next();
+                    }
+
+                }
+            }, {
+                passive: true
+            });
+
             window.addEventListener('resize', (e) => {
-                this.track.style.transition = '';
+                this.track.classList.remove('animated');
                 this.calc();
-                this.position = this.deleteNodigits(this.width) * this.index;
-                this.movePosition();
+                this.position = -(this.currentSlide * this.movePosition);
+                this.setPosition();
             });
         }
         calc() {
             this.track.style.width = 100 * this.slides.length + '%';
 
-            this.width = window.getComputedStyle(this.wrapper).width;
+            // this.width = window.getComputedStyle(this.wrapper).width;
 
-            this.slides.forEach(slide => {
-                slide.style.width = this.width;
+            // this.slides.forEach(slide => {
+            //     slide.style.width = this.width;
+            // })
+
+            this.track.style.width = 100 * this.slides.length + '%';
+
+            this.movePosition = window.getComputedStyle(this.wrapper).width;
+            this.movePosition = this.deleteNoDigits(this.movePosition);
+
+            this.leftX = this.slides[1].getBoundingClientRect().left;
+
+            this.setPosition();
+            this.track.offsetHeight;
+            this.track.classList.add('animated');
+        }
+
+        setPosition() {
+            this.track.style.transform = `translateX(${this.position}px)`;
+        }
+
+        deleteNoDigits(str) {
+            return +str.replace(/[A-Za-z]/g, '');
+        }
+
+        next() {
+            if (this.firstInit) {
+                this.calc();
+                this.firstInit = false;
+            }
+            if (this.slides[0].getBoundingClientRect().right < 0) {
+
+                let temp = this.track.removeChild(this.slides[0]);
+                this.track.appendChild(temp);
+
+                this.slides = document.querySelectorAll(this.slidesSelector);
+
+                this.position += this.movePosition;
+                this.currentSlide--;
+                this.track.classList.remove('animated');
+                this.setPosition();
+                this.track.offsetHeight;
+                this.track.classList.add('animated');
+            }
+
+            this.position -= this.movePosition;
+            this.currentSlide++;
+
+            this.setPosition();
+            this.currentDot++;
+            if (this.currentDot >= this.indicators.length) {
+                this.currentDot = 0;
+            }
+            this.updateDot();
+        }
+
+        prev() {
+            if (this.firstInit) {
+                this.calc();
+                this.firstInit = false;
+            }
+
+            if (this.slides[this.slides.length - 1].getBoundingClientRect().left > 0) {
+
+                let temp = this.track.removeChild(this.slides[this.slides.length - 1]);
+                this.track.insertBefore(temp, this.slides[0]);
+
+                this.slides = document.querySelectorAll(this.slidesSelector);
+
+                this.position -= this.movePosition;
+                this.currentSlide++;
+                this.track.classList.remove('animated');
+                this.setPosition();
+                this.track.offsetHeight;
+                this.track.classList.add('animated');
+
+            }
+            this.position += this.movePosition;
+            this.currentSlide--;
+            this.setPosition();
+            this.currentDot--;
+            if (this.currentDot < 0) {
+                this.currentDot = this.indicators.length - 1;
+            }
+            this.updateDot();
+        }
+
+        updateDot() {
+            this.indicators.forEach(item => {
+                item.classList.remove('dot-active');
             })
-        }
-
-        movePosition() {
-            this.track.style.transform = `translateX(-${this.position}px)`;
-        }
-
-        deleteNodigits(str) {
-            return +str.replace(/\D/g, '');
+            this.indicators[this.currentDot].classList.add('dot-active');
         }
 
     }
@@ -162,10 +304,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (slider.length !== 0)
         new Slider({
-            slider: '.slider',
-            slides: '.slide',
-            wrapper: '.slider-wrapper',
-            track: '.slider-track',
+            sliderSelector: '.slider',
+            slidesSelector: '.slide',
+            wrapperSelector: '.slider-wrapper',
+            trackSelector: '.slider-track',
+            btnNextSelector: '.btn-next',
+            btnPrevSelector: '.btn-prev',
             pagination: true,
         }).init();
 
@@ -289,16 +433,16 @@ window.addEventListener('DOMContentLoaded', () => {
                     checkOption: 'Choose a course option'
                 }
 
-                if(selectItems && selectGroup) {
+                if (selectItems && selectGroup) {
                     const checkRadio = el => el.getAttribute('checked');
                     const notChecked = Array.from(selectRadio).some(checkRadio);
-                        if(!notChecked) {
-                            error = true;
-                            removeError = false;
-                          
-                            const selectMessage = selectGroup.querySelector('.error-message');
-                            selectMessage.textContent = message.checkOption;
-                        }
+                    if (!notChecked) {
+                        error = true;
+                        removeError = false;
+
+                        const selectMessage = selectGroup.querySelector('.error-message');
+                        selectMessage.textContent = message.checkOption;
+                    }
                 }
 
                 for (let i = 0; i < fieldsLength; i++) {
@@ -420,7 +564,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         function setSelectTiltle(e) {
             const labelElement = document.querySelector(`label[for="${e.target.id}"]`),
-                 radioButton = labelElement.nextElementSibling;
+                radioButton = labelElement.nextElementSibling;
 
             const labelText = labelElement.innerText;
             radioButton.setAttribute('checked', 'checked');
