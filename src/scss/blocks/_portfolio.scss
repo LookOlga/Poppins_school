@@ -2,7 +2,9 @@
     &__slider {
         margin-top: 3rem;
         position: relative;
-        padding: 0 3rem;
+        @media(min-width: 992px) {
+            padding: 0 3rem;
+        }
     }
 
 
@@ -42,6 +44,9 @@
         position: absolute;
         left: 0;
         top: 40%;
+        @media(max-width: 992px) {
+            display: none;
+        }
     }
 
     &__arrow {

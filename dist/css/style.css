@@ -862,7 +862,6 @@ body.menu-active .header__nav::after {
 .portfolio__slider {
   margin-top: 3rem;
   position: relative;
-  padding: 0 3rem;
 }
 
 .portfolio__img-wrap {
@@ -1432,6 +1431,10 @@ section:not(.intro) {
 }
 
 @media (min-width: 992px) {
+  .portfolio__slider {
+    padding: 0 3rem;
+  }
+
   .open-days__input-group {
     margin-right: 2rem;
   }
@@ -1450,6 +1453,10 @@ section:not(.intro) {
 }
 
 @media (max-width: 992px) {
+  .portfolio__arrows {
+    display: none;
+  }
+
   .blog__item {
     width: calc(50% - 4rem);
   }
