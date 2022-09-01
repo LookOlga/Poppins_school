@@ -325,6 +325,11 @@ window.addEventListener('DOMContentLoaded', () => {
             this.popupForm = document.querySelector(this.popupFormSelector);
             this.overlay = document.querySelector(this.overlaySelector);
             this.errorMessages = document.querySelectorAll(this.errorMessageSelector);
+            this.form = this.popup.querySelector('form');
+
+            if(this.form) {
+                this.initForm(this.form);
+            }
 
 
             this.btnShowPopup.addEventListener('click', (e) => {
@@ -347,6 +352,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
         }
 
+        initForm(form) {
+            this.radioButtons = form.querySelectorAll('input[type=radio]'),
+            this.selectGroup = form.querySelector('.select-group'),
+            this.selectLabel = form.querySelector('#select-label'),
+            this.selectBtn = this.selectGroup.querySelector('button'),
+            this.formInputs = form.querySelectorAll('input');
+        }
+
+       resetCustomSelect() {
+            if(this.radioButtons && this.selectLabel) {
+                this.radioButtons.forEach(btn => {
+                    btn.checked = false;
+                    this.selectLabel.innerText = '- Please select one -'; 
+                })
+                this.selectBtn.classList.remove('error');
+            }
+        }
+    
+        resetInputs ()  {
+            this.formInputs.forEach(input => input.classList.remove('error'));
+        }
+
         showPopup(e) {
             const target = e.target;
             const popupId = target.getAttribute('data-modal')
@@ -364,11 +391,60 @@ window.addEventListener('DOMContentLoaded', () => {
             this.errorMessages.forEach(message => {
                 message.textContent = '';
             })
+            this.resetCustomSelect();
+            this.resetInputs();
             document.body.style.overflow = '';
         }
     }
 
     const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form', '.popup form .error-message').init();
+
+
+    const resetCustomSelect = (form) => {
+        const radioButtons = form.querySelectorAll('input[type=radio]'),
+        selectGroup = form.querySelector('.select-group'),
+        selectLabel = form.querySelector('#select-label'),
+        selectBtn = selectGroup.querySelector('button');
+
+        if(radioButtons && selectLabel) {
+            radioButtons.forEach(btn => {
+                btn.checked = false;
+                selectLabel.innerText = '- Please select one -'; 
+            })
+            selectBtn.classList.remove('error');
+        }
+    }
+
+    const postData = async (url, data) => {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: data
+        });
+    
+        return await res.json();
+    };
+    
+    
+    const bindPostData= (form) => {
+       
+            const formData = new FormData(form);
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
+            
+            console.log(json)
+            postData('http://localhost:3000', json)
+                .then(data => {
+                    console.log(data)
+                    
+                }).catch(() => {
+                    
+                }).finally(() => {
+                    form.reset();
+                    resetCustomSelect(form);
+                })
+    }
 
     class Form {
         constructor(obj) {
@@ -382,16 +458,18 @@ window.addEventListener('DOMContentLoaded', () => {
             this.forms.forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    const validation = this.validateForm(e);
+                    const currentForm = e.target;
+                
+                    const validation = this.validateForm(currentForm);
+
                     if (validation) {
-                        console.log('valid')
+                        bindPostData(currentForm);
                     }
                 })
             })
         }
 
-        validateForm(e) {
-            const form = e.target;
+        validateForm(form) {
             const regexpEmail = /^[0-9a-z_.-]+@[0-9a-z_^.]+.[a-z]{2,3}$/i;
 
             let error = false,
@@ -429,7 +507,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (selectItems && selectGroup) {
                 const checkRadio = el => el.getAttribute('checked'),
-                    selectMessage = selectGroup.querySelector('.error-message');
+                    selectMessage = selectGroup.querySelector('.error-message'),
+                    selectButton = selectGroup.querySelector('.select-group__button');
+
+                    selectButton.classList.add(this.errorClass);
+
                 const notChecked = Array.from(selectRadio).some(checkRadio);
                 if (!notChecked) {
                     error = true;
@@ -444,7 +526,8 @@ window.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < fieldsLength; i++) {
                 const field = requiredFields[i],
                     messageField = messageSpan[i];
-                if (field.getAttribute('type') === 'email' && !regexpEmail.test(field.value)) {
+                
+                if (field.getAttribute('name') === 'email' && !regexpEmail.test(field.value)) {
                     field.classList.add(this.errorClass);
                     messageField.textContent = message.format;
                     error = true;
