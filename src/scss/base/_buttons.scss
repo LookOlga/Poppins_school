@@ -65,4 +65,13 @@
         margin-right: 3px;
         transform: rotate(-45deg) translateY(-50%);
     }
+
+    @media(any-hover: hover) {
+        &:hover {
+            color: $yellow;
+            &::before {
+                border-color: $yellow;
+            }
+        }
+    }
 }

@@ -98,3 +98,11 @@ input.error, button.error, textarea.error {
     height: 2rem;
     color: red;
 }
+
+.title-link {
+    @media(any-hover: hover) {
+        &:hover {
+            color: $yellow;
+        }
+    }
+}

@@ -73,8 +73,13 @@
             }
         }
 
-        &:hover span::after {
-            animation: arrow 1s linear infinite;
+        @media(any-hover: hover) {
+            &:hover {
+                color: $yellow;
+                span::after {
+                    animation: arrow 1s linear infinite;
+                }
+            }
         }
     }
 }
