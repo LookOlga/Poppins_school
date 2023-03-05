@@ -3,7 +3,7 @@
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.body.classList.add('isLoaded');
-    }, 400);
+    }, 100);
 })
 
 window.addEventListener('DOMContentLoaded', () => {
