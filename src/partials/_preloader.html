@@ -1,7 +1,21 @@
 <div class="preloader">
     <div class="preloader__spinner">
-        <svg>
-            <use xlink:href="#spinner"></use>
+        <svg xmlns="http://www.w3.org/2000/svg" style="margin:auto;background:0 0" width="200" height="200"
+            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" display="block">
+            <circle cx="30" cy="50" fill="#fd9d4a" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="-0.5s" />
+            </circle>
+            <circle cx="70" cy="50" fill="#fff" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="0s" />
+            </circle>
+            <circle cx="30" cy="50" fill="#fd9d4a" r="20">
+                <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+                    begin="-0.5s" />
+                <animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1"
+                    dur="1s" repeatCount="indefinite" />
+            </circle>
         </svg>
     </div>
 </div>
