@@ -671,17 +671,16 @@ body.menu-active .header__nav::after {
 
 .course__img {
   width: 100%;
-  height: 55rem;
-  display: block;
   position: relative;
   margin-bottom: 8rem;
 }
 
-.course__img img {
+.course__img img,
+.course__img picture {
+  display: block;
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
-  height: 100%;
 }
 
 .course__img::after {
@@ -1433,6 +1432,12 @@ textarea.error {
 
   .open-days__input-group {
     margin-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .course__img {
+    height: 55rem;
   }
 }
 
