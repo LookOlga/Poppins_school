@@ -13,10 +13,14 @@
         <div class="course">
             <div class="course__header">
                 <div class="course__img">
-                    <img src="img/courses/hero_3.webp" 
-                        srcset="img/courses/hero_3_1280.webp 1280w, img/courses/hero_3_1024.webp 1024w, img/courses/hero_3_769.webp 769w, img/courses/hero_3_480.webp 480w" 
-                        sizes="100vw"
-                        alt="fashion-photography">
+                    <picture>
+                        <source media="(min-width: 1440px)" srcset="img/courses/hero_3.webp">
+                        <source media="(min-width: 1280px)" srcset="img/courses/hero_3_1280.webp">
+                        <source media="(min-width: 1024px)" srcset="img/courses/hero_3_1024.webp 1x, img/courses/hero_3.webp 2x">
+                        <source media="(min-width: 768px)" srcset="img/courses/hero_3_768.webp 1x, img/courses/hero_3_1280.webp 2x">
+                        <source media="(min-width: 320px)" srcset="img/courses/hero_3_480.webp 1x, img/courses/hero_3_768.webp 2x">
+                        <img src="img/courses/hero_3.webp" alt="fashion-photography"> 
+                    </picture>
                 </div>
             </div>
 

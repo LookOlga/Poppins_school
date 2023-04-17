@@ -13,10 +13,18 @@
             <div class="course__header">
                 <div class="course__img">
                     <!-- <img src="img/courses/hero_1.jpg" srcset="img/courses/hero_1.jpg, img/courses/hero_1_2x.jpg 2x" alt="documentary-photography"> -->
-                    <img src="img/courses/hero_1.webp" 
+                    <picture>
+                        <source media="(min-width: 1440px)" srcset="img/courses/hero_1.webp">
+                        <source media="(min-width: 1280px)" srcset="img/courses/hero_1_1280.webp">
+                        <source media="(min-width: 1024px)" srcset="img/courses/hero_1_1024.webp 1x, img/courses/hero_1.webp 2x">
+                        <source media="(min-width: 768px)" srcset="img/courses/hero_1_768.webp 1x, img/courses/hero_1_1280.webp 2x">
+                        <source media="(min-width: 320px)" srcset="img/courses/hero_1_480.webp 1x, img/courses/hero_1_768.webp 2x">
+                        <img src="img/courses/hero_1.webp" alt="documentary-photography"> 
+                    </picture>
+                    <!-- <img src="img/courses/hero_1.webp" 
                         srcset="img/courses/hero_1_1280.webp 1280w, img/courses/hero_1_1024.webp 1024w, img/courses/hero_1_769.webp 769w, img/courses/hero_1_480.webp 480w" 
                         sizes="100vw"
-                        alt="documentary-photography">
+                        alt="documentary-photography"> -->
                 </div>
             </div>
 
