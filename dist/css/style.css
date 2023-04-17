@@ -1350,7 +1350,7 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
   color: #1b1b21;
   position: relative;
@@ -1444,6 +1444,12 @@ textarea.error {
   }
 }
 
+@media (min-width: 1921px) {
+  html {
+    font-size: 0.5vw;
+  }
+}
+
 @media (max-width: 1200px) {
   .course__content {
     width: 100%;
@@ -1514,6 +1520,12 @@ textarea.error {
 @media (max-width: 767px) {
   .courses__item {
     width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 1.9vw;
   }
 }
 

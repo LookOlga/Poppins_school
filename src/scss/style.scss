@@ -25,6 +25,12 @@
 
 html {
     font-size: 10px;
+    @media (max-width: 500px) {
+        font-size: 1.9vw;
+    }
+    @media (min-width: 1921px) {
+        font-size: 0.5vw;
+    }
 }
 
 *,
@@ -37,7 +43,7 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 300;
     color: #1b1b21;
     position: relative;
