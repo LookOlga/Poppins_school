@@ -5,6 +5,7 @@
 	"main": "index.html",
 	"author": "Fls",
 	"license": "ISC",
+	"type": "module",
 	"devDependencies": {
 		"browser-sync": "latest",
 		"del": "latest",

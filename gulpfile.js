@@ -1,9 +1,9 @@
-let project_folder = "dist";
-let source_folder = "src";
+const project_folder = "dist";
+const source_folder = "src";
 
-let fs = require('fs');
-
-let path = {
+// let fs = require('fs');
+// import 'fs';
+const path = {
 	build: {
 		html: project_folder + "/",
 		css: project_folder + "/css/",
@@ -27,26 +27,50 @@ let path = {
 	clean: "./" + project_folder + "/"
 }
 
-let { src, dest } = require('gulp'),
-	gulp = require('gulp'),
-	browsersync = require("browser-sync").create(),
-	fileinclude = require("gulp-file-include"),
-	del = require("del"),
-	scss = require('gulp-sass')(require('sass')),
-	autoprefixer = require("gulp-autoprefixer"),
-	group_media = require("gulp-group-css-media-queries"),
-	clean_css = require("gulp-clean-css"),
-	rename = require("gulp-rename"),
-	uglify = require("gulp-uglify-es").default,
-	imagemin = require("gulp-imagemin"),
-	webphtml = require('gulp-webp-html'),
-	webp = require('imagemin-webp'),
-	webpcss = require("gulp-webpcss"),
-	ghPages = require('gh-pages'),
-	pathVar = require('path'),
-	newer = require('gulp-newer');
+import gulp from 'gulp';
+import browsersync from 'browser-sync';
+import fileinclude from 'gulp-file-include';
+import { deleteAsync as del } from 'del';
+// import scss from 'gulp-sass';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
 
-function browserSync(params) {
+import autoprefixer from 'gulp-autoprefixer';
+import group_media from 'gulp-group-css-media-queries';
+import clean_css from 'gulp-clean-css';
+import rename from 'gulp-rename';
+import uglify from 'gulp-uglify-es';
+import imagemin from 'gulp-imagemin';
+import webphtml from 'gulp-webp-html';
+import webpcss from 'gulp-webpcss';
+import webp from 'imagemin-webp';
+import ghPages from 'gh-pages';
+import pathVar from 'path';
+import newer from 'gulp-newer';
+
+const {src, dest}  = gulp;
+const scss = gulpSass(dartSass);
+
+// let { src, dest } = require('gulp'),
+// 	gulp = require('gulp'),
+// 	browsersync = require("browser-sync").create(),
+// 	fileinclude = require("gulp-file-include"),
+// 	del = require("del"),
+// 	scss = require('gulp-sass')(require('sass')),
+// 	autoprefixer = require("gulp-autoprefixer"),
+// 	group_media = require("gulp-group-css-media-queries"),
+// 	clean_css = require("gulp-clean-css"),
+// 	rename = require("gulp-rename"),
+// 	uglify = require("gulp-uglify-es").default,
+// 	imagemin = require("gulp-imagemin"),
+// 	webphtml = require('gulp-webp-html'),
+// 	webp = require('imagemin-webp'),
+// 	webpcss = require("gulp-webpcss"),
+// 	ghPages = require('gh-pages'),
+// 	pathVar = require('path'),
+// 	newer = require('gulp-newer');
+
+export function browserSync(params) {
 	browsersync.init({
 		server: {
 			baseDir: "./" + project_folder + "/"
@@ -55,14 +79,16 @@ function browserSync(params) {
 		notify: false
 	})
 }
-function html() {
+
+export function html() {
 	return src(path.src.html)
 		.pipe(fileinclude())
 		// .pipe(webphtml())
 		.pipe(dest(path.build.html))
 		.pipe(browsersync.stream())
 }
-function css() {
+
+export function css() {
 	return src(path.src.css)
 		.pipe(
 			scss({ outputStyle: 'expanded' }).on('error', scss.logError)
@@ -91,7 +117,7 @@ function css() {
 		.pipe(dest(path.build.css))
 		.pipe(browsersync.stream())
 }
-function js() {
+export function js() {
 	return src(path.src.js)
 		.pipe(fileinclude())
 		.pipe(dest(path.build.js))
@@ -105,7 +131,8 @@ function js() {
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream())
 }
-function images() {
+
+export function images() {
 	return src(path.src.img)
 		.pipe(newer(path.build.img))
 		.pipe(
@@ -133,33 +160,35 @@ function images() {
 		)
 		.pipe(dest(path.build.img))
 }
-function fonts() {
+
+export function fonts() {
 	return src(path.src.fonts)
 		.pipe(dest(path.build.fonts));
 };
 
 function cb() { }
-function watchFiles(params) {
+export function watchFiles(params) {
 	gulp.watch([path.watch.html], html);
 	gulp.watch([path.watch.css], css);
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.img], images);
 }
 
-function clean(params) {
+export function clean(params) {
 	return del(path.clean);
 }
 
-function deploy(cb) {
+export function deploy(cb) {
 	ghPages.publish(pathVar.join(process.cwd(), './dist'), cb);
 }
 
-  
-let fontsBuild = gulp.series(fonts);
-let buildDev = gulp.series(clean, gulp.parallel(fontsBuild, html, css, js, images));
-let watch = gulp.series(buildDev, gulp.parallel(watchFiles, browserSync));
 
-exports.fonts = fontsBuild;
-exports.watch = watch;
-exports.default = watch;
-exports.deploy = deploy;
+  
+export const fontsBuild = gulp.series(fonts);
+export const buildDev = gulp.series(clean, gulp.parallel(fontsBuild, html, css, js, images));
+const dev = gulp.series(buildDev, gulp.parallel(watchFiles, browserSync));
+export default dev;
+
+// exports.watch = watch;
+// exports.default = watch;
+// exports.deploy = deploy;
