@@ -1,8 +1,6 @@
 const project_folder = "dist";
 const source_folder = "src";
 
-// let fs = require('fs');
-// import 'fs';
 const path = {
 	build: {
 		html: project_folder + "/",
@@ -50,25 +48,6 @@ import newer from 'gulp-newer';
 
 const {src, dest}  = gulp;
 const scss = gulpSass(dartSass);
-
-// let { src, dest } = require('gulp'),
-// 	gulp = require('gulp'),
-// 	browsersync = require("browser-sync").create(),
-// 	fileinclude = require("gulp-file-include"),
-// 	del = require("del"),
-// 	scss = require('gulp-sass')(require('sass')),
-// 	autoprefixer = require("gulp-autoprefixer"),
-// 	group_media = require("gulp-group-css-media-queries"),
-// 	clean_css = require("gulp-clean-css"),
-// 	rename = require("gulp-rename"),
-// 	uglify = require("gulp-uglify-es").default,
-// 	imagemin = require("gulp-imagemin"),
-// 	webphtml = require('gulp-webp-html'),
-// 	webp = require('imagemin-webp'),
-// 	webpcss = require("gulp-webpcss"),
-// 	ghPages = require('gh-pages'),
-// 	pathVar = require('path'),
-// 	newer = require('gulp-newer');
 
 export function browserSync(params) {
 	browsersync.init({
@@ -188,7 +167,3 @@ export const fontsBuild = gulp.series(fonts);
 export const buildDev = gulp.series(clean, gulp.parallel(fontsBuild, html, css, js, images));
 const dev = gulp.series(buildDev, gulp.parallel(watchFiles, browserSync));
 export default dev;
-
-// exports.watch = watch;
-// exports.default = watch;
-// exports.deploy = deploy;
