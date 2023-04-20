@@ -709,9 +709,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     customSelect('.select-group__button', '.option', '#select-label', '.dropdown');
 
-    const basket = () => {
+    const scrollToFirstSection = () => {
+        const section = document.querySelectorAll('section')[0],
+              btnScroll = document.querySelector('.btn-scroll');
 
+        btnScroll.addEventListener('click', () => {
+            section.scrollIntoView({
+                behavior: 'smooth'
+            })
+        });
     }
 
-    basket();
+    scrollToFirstSection();
 })

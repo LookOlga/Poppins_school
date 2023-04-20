@@ -1415,6 +1415,7 @@ body.menu-active .header__nav::after {
 
 html {
   font-size: 10px;
+  scroll-padding-top: 3rem;
 }
 
 *,
