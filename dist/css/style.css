@@ -69,6 +69,68 @@
   margin-top: 3rem;
 }
 
+@-webkit-keyframes arrow {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  50% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes arrow {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  50% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes mouseScroll {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mouseScroll {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .button {
   min-width: 16rem;
   height: 5rem;
@@ -154,6 +216,61 @@
   -webkit-transform: rotate(-45deg) translateY(-50%);
       -ms-transform: rotate(-45deg) translateY(-50%);
           transform: rotate(-45deg) translateY(-50%);
+}
+
+.btn-scroll {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 50%;
+  bottom: 3rem;
+  width: 7rem;
+  height: 7rem;
+  margin-top: -4px;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 3;
+  cursor: pointer;
+}
+
+.btn-scroll__arrow {
+  display: block;
+  width: 12px;
+  height: 12px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-right: 2px solid #0d0d11;
+  border-bottom: 2px solid #0d0d11;
+  -webkit-animation: mouseScroll 1s infinite alternate;
+          animation: mouseScroll 1s infinite alternate;
+}
+
+.btn-scroll__arrow-1 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+
+.btn-scroll__arrow-2 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.btn-scroll__arrow-3 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 
 input[type=text],
@@ -312,46 +429,10 @@ fieldset {
   transition: 0.6s all;
 }
 
-@-webkit-keyframes arrow {
-  0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-
-  50% {
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes arrow {
-  0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-
-  50% {
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
 .intro {
   background: url("../img/intro/bg.webp") center center/cover no-repeat #fafafa;
   width: 100%;
   height: 100vh;
-  min-height: 70rem;
-  padding: 10rem 0;
   position: relative;
 }
 
@@ -1493,6 +1574,17 @@ textarea.error {
 }
 
 @media (max-width: 768px) {
+  .btn-scroll {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .btn-scroll__arrow {
+    width: 8px;
+    height: 8px;
+    border-width: 1px;
+  }
+
   .intro__wrapper {
     width: 100%;
   }
