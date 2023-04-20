@@ -113,3 +113,15 @@ input.error, button.error, textarea.error {
         }
     }
 }
+
+.course-info {
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    &__label {
+        margin-right: 2rem;
+    }
+}

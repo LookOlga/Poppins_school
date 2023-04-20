@@ -11,16 +11,18 @@
         display: flex;
         font-size: 1.6rem;
         margin-bottom: 0.7rem;
-        p {
-            width: 50%;
-            font-weight: 600;
-        }
-        span {
-            width: 50%
-        }
     }
 
-    &__qty {
+    &__label {
+        width: 50%;
+        font-weight: 600;
+    }
+
+    &__desc {
+        width: 50%
+    }
+
+    &__price {
         display: flex;
         align-items: center;
         height: 3rem;
@@ -45,7 +47,7 @@
         padding: 0.5rem;
     }
 
-    &__price {
+    &__price-num {
         font-size: 3rem;
         font-weight: 600;
     }

@@ -307,39 +307,72 @@ window.addEventListener('DOMContentLoaded', () => {
         }).init();
 
 
+    
+    const coursesData = [
+        {
+            id: 'travel',
+            name: 'Travel Photography',
+            date: '5/03/2021',
+            duration: '4 weeks',
+            price: '320$'
+        },
+        {
+            id: 'documentary',
+            name: 'Documentary Photography',
+            date: '27/02/2021',
+            duration: '4 weeks',
+            price: '365$'
+        },
+        {
+            id: 'portrait',
+            name: 'Portrait Photography',
+            date: '22/02/2021',
+            duration: '6 weeks',
+            price: '550$'
+        },
+        {
+            id: 'fashion',
+            name: 'Fashion Photography',
+            date: '13/03/2021',
+            duration: '8 weeks',
+            price: '700$'
+        }
+
+    ]
+
+    
 
     class Popup {
-        constructor(popupSelector, btnShowSelector, overlaySelector, popupFormSelector, errorMessageSelector) {
+        constructor(popupSelector, btnShowSelector, overlaySelector, popupFormSelector, errorMessageSelector, courses) {
             this.popupSelector = popupSelector;
             this.btnShowSelector = btnShowSelector;
             this.overlaySelector = overlaySelector;
             this.popupFormSelector = popupFormSelector;
             this.errorMessageSelector = errorMessageSelector;
+            this.courses = courses;
+            this.courseId = null;
             this.currentPopup = null;
             this.btnClose = null;
+            this.form = null;
         }
 
         init() {
             this.popup = document.querySelector(this.popupSelector);
-            this.btnShowPopup = document.querySelector(this.btnShowSelector);
-            this.popupForm = document.querySelector(this.popupFormSelector);
+            this.btnShowPopup = document.querySelectorAll(this.btnShowSelector);
             this.overlay = document.querySelector(this.overlaySelector);
             this.errorMessages = document.querySelectorAll(this.errorMessageSelector);
-            this.form = this.popup.querySelector('form');
-
-            if(this.form) {
-                this.initForm(this.form);
-            }
 
 
-            this.btnShowPopup.addEventListener('click', (e) => {
-                this.showPopup(e);
-                if (this.currentPopup !== null) {
-                    this.btnClose = this.currentPopup.querySelector('.popup__close');
-                    this.btnClose.addEventListener('click', () => {
-                        this.closePopup();
-                    })
-                }
+            this.btnShowPopup.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    this.showPopup(e);
+                    if (this.currentPopup !== null) {
+                        this.btnClose = this.currentPopup.querySelector('.popup__close');
+                        this.btnClose.addEventListener('click', () => {
+                            this.closePopup();
+                        })
+                    }
+                })
             })
 
             this.overlay.addEventListener('click', (e) => {
@@ -353,10 +386,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         initForm(form) {
-            this.radioButtons = form.querySelectorAll('input[type=radio]'),
-            this.selectGroup = form.querySelector('.select-group'),
-            this.selectLabel = form.querySelector('#select-label'),
-            this.selectBtn = this.selectGroup.querySelector('button'),
+            this.selectGroup = form.querySelector('.select-group');
+            if(this.selectGroup) {
+                this.radioButtons = this.selectGroup.querySelectorAll('input[type=radio]'),
+                this.selectLabel = this.selectGroup.querySelector('#select-label'),
+                this.selectBtn = this.selectGroup.querySelector('button');
+            }
+            
             this.formInputs = form.querySelectorAll('input');
         }
 
@@ -376,18 +412,40 @@ window.addEventListener('DOMContentLoaded', () => {
 
         showPopup(e) {
             const target = e.target;
-            const popupId = target.getAttribute('data-modal')
+            const popupId = target.getAttribute('data-modal');
+            this.courseId = target.getAttribute('id');
             this.currentPopup = document.querySelector(`#${popupId}`);
+            if(this.currentPopup) {
+                this.form = this.currentPopup.querySelector('form');
+            }
+
+            if(this.form) {
+                this.initForm(this.form);
+            }
 
             this.overlay.classList.add('showOverlay');
             this.currentPopup.classList.add('showPopup');
             document.body.style.overflow = 'hidden';
+
+            if(popupId === 'course') {
+                const course = this.courses.find(item => item.id === this.courseId);
+                const courseTitle = this.currentPopup.querySelector('.course-title'),
+                      courseDate = this.currentPopup.querySelector('.course-date'),
+                      courseDuration = this.currentPopup.querySelector('.course-duration'),
+                      coursePrice = this.currentPopup.querySelector('.course-price');
+
+                courseTitle.textContent = `${course.name} Course`;
+                courseDate.textContent = course.date;
+                courseDuration.textContent = course.duration;
+                coursePrice.textContent = course.price;
+            }
+           
         }
 
         closePopup() {
             this.overlay.classList.remove('showOverlay');
             this.currentPopup.classList.remove('showPopup');
-            this.popupForm.reset();
+            this.form.reset();
             this.errorMessages.forEach(message => {
                 message.textContent = '';
             })
@@ -397,7 +455,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form', '.popup form .error-message').init();
+    const popup = new Popup('.popup', '.btn-show', '.overlay', '.popup form', '.popup form .error-message', coursesData).init();
 
 
     const resetCustomSelect = (form) => {
@@ -454,9 +512,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         init() {
             this.forms = document.querySelectorAll(this.formSelector);
-
+            console.log(this.forms)
             this.forms.forEach(form => {
                 form.addEventListener('submit', (e) => {
+                    console.log(form)
                     e.preventDefault();
                     const currentForm = e.target;
                 
@@ -649,4 +708,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     customSelect('.select-group__button', '.option', '#select-label', '.dropdown');
+
+    const basket = () => {
+
+    }
+
+    basket();
 })

@@ -677,9 +677,6 @@ body.menu-active .header__nav::after {
 
 .course__img img,
 .course__img picture {
-  display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
   width: 100%;
 }
 
@@ -742,16 +739,16 @@ body.menu-active .header__nav::after {
   margin-bottom: 0.7rem;
 }
 
-.sidebar__item p {
+.sidebar__label {
   width: 50%;
   font-weight: 600;
 }
 
-.sidebar__item span {
+.sidebar__desc {
   width: 50%;
 }
 
-.sidebar__qty {
+.sidebar__price {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -784,7 +781,7 @@ body.menu-active .header__nav::after {
   padding: 0.5rem;
 }
 
-.sidebar__price {
+.sidebar__price-num {
   font-size: 3rem;
   font-weight: 600;
 }
@@ -1415,6 +1412,20 @@ textarea.error {
   font-size: 12px;
   height: 2rem;
   color: red;
+}
+
+.course-info__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.course-info__label {
+  margin-right: 2rem;
 }
 
 @media (min-width: 768px) {

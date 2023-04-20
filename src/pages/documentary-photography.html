@@ -12,7 +12,6 @@
         <div class="course">
             <div class="course__header">
                 <div class="course__img">
-                    <!-- <img src="img/courses/hero_1.jpg" srcset="img/courses/hero_1.jpg, img/courses/hero_1_2x.jpg 2x" alt="documentary-photography"> -->
                     <picture>
                         <source media="(min-width: 1440px)" srcset="img/courses/hero_1.webp">
                         <source media="(min-width: 1280px)" srcset="img/courses/hero_1_1280.webp">
@@ -21,10 +20,6 @@
                         <source media="(min-width: 320px)" srcset="img/courses/hero_1_480.webp 1x, img/courses/hero_1_768.webp 2x">
                         <img src="img/courses/hero_1.webp" alt="documentary-photography"> 
                     </picture>
-                    <!-- <img src="img/courses/hero_1.webp" 
-                        srcset="img/courses/hero_1_1280.webp 1280w, img/courses/hero_1_1024.webp 1024w, img/courses/hero_1_769.webp 769w, img/courses/hero_1_480.webp 480w" 
-                        sizes="100vw"
-                        alt="documentary-photography"> -->
                 </div>
             </div>
 
@@ -89,34 +84,29 @@
                             <div class="sidebar__content">
                                 <ul class="sidebar__list">
                                     <li class="sidebar__item">
-                                        <p>Time</p>
-                                        <span>11:00 - 12:30</span>
+                                        <h4 class="sidebar__label">Time</h4>
+                                        <p class="sidebar__desc">11:00 - 12:30</p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Date</p>
-                                        <span><time datetime="2021-02-27">27/02/2021</time></span>
+                                        <h4 class="sidebar__label">Date</h4>
+                                        <p class="sidebar__desc"><time datetime="2021-02-27">27/02/2021</time></p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Duration</p>
-                                        <span>4 weeks</span>
+                                        <h4 class="sidebar__label">Duration</h4>
+                                        <p class="sidebar__desc">4 weeks</p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Level</p>
-                                        <span>Beginners</span>
+                                        <h4 class="sidebar__label">Level</h4>
+                                        <p class="sidebar__desc">Beginners</p>
                                     </li>
                                 </ul>
                                 <div class="sidebar__actions">
-                                    <div class="sidebar__qty">
-                                        <div class="sidebar__input-group">
-                                            <label for="quantity">Qty:</label>
-                                            <input class="sidebar__input" for="quantity" type="number" name="quantity"
-                                                value="1" min="1">
-                                        </div>
-                                        <p class="sidebar__price">365$</p>
+                                    <div class="sidebar__price">
+                                        <h4 class="sidebar__label">Price:</h4>
+                                        <p class="sidebar__price-num">365$</p>
                                     </div>
                                     <div class="sidebar__buttons">
-                                        <button class=" sidebar__button button button--yellow">Add to basket</button>
-                                        <button class="sidebar__button button button--black">Proceed to basket</button>
+                                        <button class=" sidebar__button button button--yellow btn-show" id="documentary" data-modal="course">Book the course</button>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +125,7 @@
                                     <address class="quick-contacts__addr">Elephant & Castle London SE1 6SB</address>
                                 </div>
                             </div>
-                            <button class="quick-contacts__button button button--black">Ask question</button>
+                            <button class="quick-contacts__button button button--black btn-show" data-modal="question">Ask question</button>
                         </div>
                     </aside>
                 </div>
@@ -143,6 +133,7 @@
         </div>
     </main>
     @@include('../partials/_footer.html')
+    @@include('../partials/_popup.html')
     @@include('../partials/_sprite.html')
     <script src="js/script.min.js"></script>
 </body>
