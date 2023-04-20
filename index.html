@@ -90,7 +90,7 @@ body.isLoaded .preloader {
     </div>
 </header>
 	<main class="main">
-		<section class="intro">
+		<div class="intro">
 			<div class="intro__container container">
 				<div class="intro__wrapper">
 					<h1 class="title intro__title">
@@ -101,8 +101,13 @@ body.isLoaded .preloader {
 					<button class="intro__button button button--yellow btn-show" data-modal="book">Book place on
 						course</button>
 				</div>
+				<div class="btn-scroll">
+					<span class="btn-scroll__arrow btn-scroll__arrow-1"></span>
+					<span class="btn-scroll__arrow btn-scroll__arrow-2"></span>
+					<span class="btn-scroll__arrow btn-scroll__arrow-3"></span>
+				</div>
 			</div>
-		</section>
+		</div>
 
 		<section class="courses" id="courses">
 			<div class="courses__container container">
@@ -478,7 +483,7 @@ body.isLoaded .preloader {
 	<div class="overlay">
     <div class="popup-book popup" id="book">
         <h2 class="popup__title">Book a course</h2>
-        <p class="popup__text">If you want to join us, just select a course and send your request. We will call you back
+        <p class="popup__text home-page">If you want to join us, just select a course and send your request. We will call you back
             later for further instructions.</p>
         <form action="#" class="popup-book__form popup__form">
             <fieldset>
@@ -496,7 +501,7 @@ body.isLoaded .preloader {
                 <input type="text" name="email" class="required">
                 <span class="error-message"></span>
             </fieldset>
-            <div class="select-group">
+            <div class="select-group home-page">
                 <label for="button">Choose a course</label>
               <div class="select-group__container">
                     <button class="select-group__button" id="button" type="button">
@@ -518,25 +523,83 @@ body.isLoaded .preloader {
                     </div>
               </div>
                 <span class="error-message"></span>
-                
             </div>
             <button class="popup-book__button button button--yellow">Send</button>
         </form>
         <div class="popup__close"></div>
     </div>
-    <div class="popup-qusetion popup" id="question">
+    <div class="popup-book popup" id="course">
+        <h2 class="popup__title course-title"></h2>
+        <ul class="course-info">
+            <li class="course-info__item">
+                <h4 class="course-info__label">Date</h4>
+                <p class="course-info__desc">
+                    <time class="course-date"></time>
+                </p>
+            </li>
+            <li class="course-info__item">
+                <h4 class="course-info__label">Duration</h4>
+                <p class="course-info__desc course-duration"></p>
+            </li>
+            <li class="course-info__item">
+                <h4 class="course-info__label">Price</h4>
+                <p class="course-info__desc course-price"></p>
+            </li>
+        </ul>
+        <p class="popup__text home-page">Fill form with your data and we will contact you about details.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <button class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+    <div class="popup-question popup" id="question">
         <h2 class="popup__title">Ask question</h2>
         <p class="popup__text">If you have any questions, feel free to ask whatever you want. We will call you back as
             soon as possible.</p>
         <form action="#" class="popup-book__form popup__form">
-            <label for="name">Name</label>
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="message">Message</label>
+                <textarea type="text" name="message" rows="3" class="required"></textarea>
+                <span class="error-message"></span>
+            </fieldset>
+            <!-- <label for="name">Name</label>
             <input type="text" name="name">
             <label for="phone">Phone</label>
             <input type="tel" name="phone">
             <label for="email">E-mail</label>
             <input type="email" name="email">
             <label for="message">Message</label>
-            <textarea type="text" name="message" rows="3"></textarea>
+            <textarea type="text" name="message" rows="3"></textarea> -->
             <button type="button" class="popup-book__button button button--yellow">Send</button>
         </form>
         <div class="popup__close"></div>

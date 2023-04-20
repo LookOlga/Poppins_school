@@ -69,6 +69,68 @@
   margin-top: 3rem;
 }
 
+@-webkit-keyframes arrow {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  50% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes arrow {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  50% {
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes mouseScroll {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mouseScroll {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .button {
   min-width: 16rem;
   height: 5rem;
@@ -154,6 +216,61 @@
   -webkit-transform: rotate(-45deg) translateY(-50%);
       -ms-transform: rotate(-45deg) translateY(-50%);
           transform: rotate(-45deg) translateY(-50%);
+}
+
+.btn-scroll {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 50%;
+  bottom: 3rem;
+  width: 7rem;
+  height: 7rem;
+  margin-top: -4px;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 3;
+  cursor: pointer;
+}
+
+.btn-scroll__arrow {
+  display: block;
+  width: 12px;
+  height: 12px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-right: 2px solid #0d0d11;
+  border-bottom: 2px solid #0d0d11;
+  -webkit-animation: mouseScroll 1s infinite alternate;
+          animation: mouseScroll 1s infinite alternate;
+}
+
+.btn-scroll__arrow-1 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+
+.btn-scroll__arrow-2 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.btn-scroll__arrow-3 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 
 input[type=text],
@@ -312,46 +429,10 @@ fieldset {
   transition: 0.6s all;
 }
 
-@-webkit-keyframes arrow {
-  0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-
-  50% {
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes arrow {
-  0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-
-  50% {
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
 .intro {
   background: url("../img/intro/bg.webp") center center/cover no-repeat #fafafa;
   width: 100%;
   height: 100vh;
-  min-height: 70rem;
-  padding: 10rem 0;
   position: relative;
 }
 
@@ -497,7 +578,7 @@ fieldset {
   height: 100%;
   z-index: 1000;
   position: fixed;
-  background: #09090c;
+  background: rgb(9, 9, 12);
   -webkit-transition: border-radius linear 0.8s, -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s;
   transition: border-radius linear 0.8s, -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s;
   -o-transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
@@ -677,9 +758,6 @@ body.menu-active .header__nav::after {
 
 .course__img img,
 .course__img picture {
-  display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
   width: 100%;
 }
 
@@ -742,16 +820,16 @@ body.menu-active .header__nav::after {
   margin-bottom: 0.7rem;
 }
 
-.sidebar__item p {
+.sidebar__label {
   width: 50%;
   font-weight: 600;
 }
 
-.sidebar__item span {
+.sidebar__desc {
   width: 50%;
 }
 
-.sidebar__qty {
+.sidebar__price {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -784,7 +862,7 @@ body.menu-active .header__nav::after {
   padding: 0.5rem;
 }
 
-.sidebar__price {
+.sidebar__price-num {
   font-size: 3rem;
   font-weight: 600;
 }
@@ -1337,6 +1415,7 @@ body.menu-active .header__nav::after {
 
 html {
   font-size: 10px;
+  scroll-padding-top: 3rem;
 }
 
 *,
@@ -1350,7 +1429,7 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
   color: #1b1b21;
   position: relative;
@@ -1365,10 +1444,13 @@ ul {
   list-style: none;
 }
 
-img {
+img,
+picture {
+  display: block;
   max-width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 button {
@@ -1414,6 +1496,20 @@ textarea.error {
   color: red;
 }
 
+.course-info__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.course-info__label {
+  margin-right: 2rem;
+}
+
 @media (min-width: 768px) {
   .blog-post__review {
     width: calc(70% - 4rem);
@@ -1438,6 +1534,12 @@ textarea.error {
 @media (min-width: 1024px) {
   .course__img {
     height: 55rem;
+  }
+}
+
+@media (min-width: 1921px) {
+  html {
+    font-size: 0.5vw;
   }
 }
 
@@ -1473,6 +1575,17 @@ textarea.error {
 }
 
 @media (max-width: 768px) {
+  .btn-scroll {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .btn-scroll__arrow {
+    width: 8px;
+    height: 8px;
+    border-width: 1px;
+  }
+
   .intro__wrapper {
     width: 100%;
   }
@@ -1511,6 +1624,12 @@ textarea.error {
 @media (max-width: 767px) {
   .courses__item {
     width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 1.9vw;
   }
 }
 

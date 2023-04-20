@@ -94,10 +94,14 @@ body.isLoaded .preloader {
         <div class="course">
             <div class="course__header">
                 <div class="course__img">
-                    <img src="img/courses/hero_3.webp" 
-                        srcset="img/courses/hero_3_1280.webp 1280w, img/courses/hero_3_1024.webp 1024w, img/courses/hero_3_769.webp 769w, img/courses/hero_3_480.webp 480w" 
-                        sizes="100vw"
-                        alt="fashion-photography">
+                    <picture>
+                        <source media="(min-width: 1440px)" srcset="img/courses/hero_3.webp">
+                        <source media="(min-width: 1280px)" srcset="img/courses/hero_3_1280.webp">
+                        <source media="(min-width: 1024px)" srcset="img/courses/hero_3_1024.webp 1x, img/courses/hero_3.webp 2x">
+                        <source media="(min-width: 768px)" srcset="img/courses/hero_3_768.webp 1x, img/courses/hero_3_1280.webp 2x">
+                        <source media="(min-width: 320px)" srcset="img/courses/hero_3_480.webp 1x, img/courses/hero_3_768.webp 2x">
+                        <img src="img/courses/hero_3.webp" alt="fashion-photography"> 
+                    </picture>
                 </div>
             </div>
 
@@ -143,34 +147,29 @@ body.isLoaded .preloader {
                             <div class="sidebar__content">
                                 <ul class="sidebar__list">
                                     <li class="sidebar__item">
-                                        <p>Time</p>
-                                        <span>18:00 - 19.30</span>
+                                        <h4 class="sidebar__label">Time</h4>
+                                        <p class="sidebar__desc">18:00 - 19.30</p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Date</p>
-                                        <span><time datetime="2021-02-27">13/03/2021</time></span>
+                                        <h4 class="sidebar__label">Date</h4>
+                                        <p class="sidebar__desc"><time datetime="2021-02-27">13/03/2021</time></p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Duration</p>
-                                        <span>8 weeks</span>
+                                        <h4 class="sidebar__label">Duration</h4>
+                                        <p class="sidebar__desc">8 weeks</p>
                                     </li>
                                     <li class="sidebar__item">
-                                        <p>Level</p>
-                                        <span>Beginners</span>
+                                        <h4 class="sidebar__label">Level</h4>
+                                        <p class="sidebar__desc">Beginners</p>
                                     </li>
                                 </ul>
                                 <div class="sidebar__actions">
-                                    <div class="sidebar__qty">
-                                        <div class="sidebar__input-group">
-                                            <label for="quantity">Qty:</label>
-                                            <input class="sidebar__input" for="quantity" type="number" name="quantity"
-                                                value="1" min="1">
-                                        </div>
-                                        <p class="sidebar__price">700$</p>
+                                    <div class="sidebar__price">
+                                        <h4 class="sidebar__label">Price:</h4>
+                                        <p class="sidebar__price-num">700$</p>
                                     </div>
                                     <div class="sidebar__buttons">
-                                        <button class=" sidebar__button button button--yellow">Add to basket</button>
-                                        <button class="sidebar__button button button--black">Proceed to basket</button>
+                                        <button class=" sidebar__button button button--yellow btn-show" id="fashion" data-modal="course">Book the course</button>
                                     </div>
                                 </div>
                             </div>
@@ -283,6 +282,131 @@ body.isLoaded .preloader {
     </div>
 </footer>
 
+    <div class="overlay">
+    <div class="popup-book popup" id="book">
+        <h2 class="popup__title">Book a course</h2>
+        <p class="popup__text home-page">If you want to join us, just select a course and send your request. We will call you back
+            later for further instructions.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="select-group home-page">
+                <label for="button">Choose a course</label>
+              <div class="select-group__container">
+                    <button class="select-group__button" id="button" type="button">
+                        <span id="select-label">- Please select one -</span>
+                        <div class="arrow"></div>
+                    </button>
+                    <div class="dropdown hidden">
+                        <label class="select-item" for="select-documentary">Documentary Photography</label>
+                        <input class="option" id="select-documentary" type="radio" name="course" value="documentary">
+    
+                        <label class="select-item" for="select-travel">Travel Photography</label>
+                        <input class="option" id="select-travel" type="radio" name="course" value="travel">
+    
+                        <label class="select-item" for="select-fashion">Fashion Photography</label>
+                        <input class="option" id="select-fashion" type="radio" name="course" value="fashion">
+    
+                        <label class="select-item" for="select-portrait">Portrait Photography</label>
+                        <input class="option" id="select-portrait" type="radio" name="course" value="portrait">
+                    </div>
+              </div>
+                <span class="error-message"></span>
+            </div>
+            <button class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+    <div class="popup-book popup" id="course">
+        <h2 class="popup__title course-title"></h2>
+        <ul class="course-info">
+            <li class="course-info__item">
+                <h4 class="course-info__label">Date</h4>
+                <p class="course-info__desc">
+                    <time class="course-date"></time>
+                </p>
+            </li>
+            <li class="course-info__item">
+                <h4 class="course-info__label">Duration</h4>
+                <p class="course-info__desc course-duration"></p>
+            </li>
+            <li class="course-info__item">
+                <h4 class="course-info__label">Price</h4>
+                <p class="course-info__desc course-price"></p>
+            </li>
+        </ul>
+        <p class="popup__text home-page">Fill form with your data and we will contact you about details.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <button class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+    <div class="popup-question popup" id="question">
+        <h2 class="popup__title">Ask question</h2>
+        <p class="popup__text">If you have any questions, feel free to ask whatever you want. We will call you back as
+            soon as possible.</p>
+        <form action="#" class="popup-book__form popup__form">
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" class="required">
+                <span class="error-message"></span>
+            </fieldset>
+            <fieldset>
+                <label for="message">Message</label>
+                <textarea type="text" name="message" rows="3" class="required"></textarea>
+                <span class="error-message"></span>
+            </fieldset>
+            <!-- <label for="name">Name</label>
+            <input type="text" name="name">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone">
+            <label for="email">E-mail</label>
+            <input type="email" name="email">
+            <label for="message">Message</label>
+            <textarea type="text" name="message" rows="3"></textarea> -->
+            <button type="button" class="popup-book__button button button--yellow">Send</button>
+        </form>
+        <div class="popup__close"></div>
+    </div>
+</div>
     <div hidden>
     <svg>
         <symbol id="spinner"
